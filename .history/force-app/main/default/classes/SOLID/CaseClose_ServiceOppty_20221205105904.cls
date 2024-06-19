@@ -1,5 +1,0 @@
-public with sharing class CaseClose_ServiceOppty implements ICaseClose {
-    
-
-    public static void detetrmineIfClosed
-}
