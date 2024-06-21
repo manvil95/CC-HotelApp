@@ -1,5 +1,0 @@
-public in {
-    public ICaseClose() {
-
-    }
-}
