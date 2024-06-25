@@ -13,12 +13,14 @@ async function extractTests(){
     });
 
     for await (const line of lines) {
-        //special delimeter for apex tests
-        if(line.includes('Apex::[') && line.includes(']::Apex')){
-
-            let tests = line.substring(8,line.length-7);
-            await fs.promises.writeFile(testsFile,tests);
-            await fs.promises.appendFile(testsFile,'\n');
+        //special delimiter for apex tests
+        if (line.includes('Apex::[') && line.includes(']::Apex')) {
+            let tests = line.substring(8, line.length - 7);
+            let testsArray = tests.split(',');
+            await fs.promises.writeFile(testsFile, ''); // Clear the file first
+            for (const test of testsArray) {
+                await fs.promises.appendFile(testsFile, `--tests ${test.trim()} `);
+            }
         }
     }
 }
