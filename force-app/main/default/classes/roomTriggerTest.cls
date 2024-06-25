@@ -1,5 +1,4 @@
 @isTest
-
 public class roomTriggerTest {
 
 static testMethod void testUnit(){
