@@ -19,7 +19,7 @@ async function extractTests(){
             let testsArray = tests.split(',');
             await fs.promises.writeFile(testsFile, ''); // Clear the file first
             for (const test of testsArray) {
-                await fs.promises.appendFile(testsFile, `--array-flag ${test.trim()} `);
+                await fs.promises.appendFile(testsFile, `--tests ${test.trim()} `);
             }
         }
     }
