@@ -163,10 +163,6 @@ jobs:
                   cd changed-sources
                   sfdx scanner:run --format sarif --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.sarif'  
                   cd ..
-            
-            - name: SFDX Scan Pull Request
-              uses: mitchspano/sfdx-scan-pull-request@v0.1.16
-            
 
             # Now we upload the .sarif file as explained in the previous step
             - name: Upload SARIF file
