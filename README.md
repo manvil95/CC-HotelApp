@@ -8,6 +8,8 @@
 
 ---
 
+## Metadata changed
+
 ## _Previous_ CC Hotel App
 
 CC Hotel App is build to manage reservation for for CC hotel company. It includes LWC UI for support team to manage customer reservations
