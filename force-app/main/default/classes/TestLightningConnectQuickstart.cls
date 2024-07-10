@@ -22,7 +22,7 @@ public class TestLightningConnectQuickstart {
 		// Double check!
 		accs = [SELECT Id 
                 FROM Account 
-                WHERE Customer_Id__c = null];
+                WHERE MV_TXT_CustomerID__c = null];
         
         System.assertEquals(0, accs.size(), 'IDs should be set');
     }
