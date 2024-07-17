@@ -5,7 +5,7 @@ public class ReservationTriggerTest {
     @isTest(SeeAllData=true) static void testMethod1() {
 
 
-       PricebookEntry defaultPricebook = [Select Id,Name,Product2Id,UnitPrice from PricebookEntry WHERE Product2.isApexDefaultReservation__c = true];
+       PricebookEntry defaultPricebook = [Select Id,Name,Product2Id,UnitPrice from PricebookEntry WHERE Product2.MV_FLG_DefaultReservation__c = true];
        Contact guest = [SELECT Id,Name,FirstName,LastName from Contact  LIMIT 1];
 
 
