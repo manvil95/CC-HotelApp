@@ -13,7 +13,7 @@
             "MailingPostalCode": "94087",
             "MailingCountry": "US",
             "Title": null,
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -28,7 +28,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "PG",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -43,7 +43,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "SF",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -58,7 +58,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "PF",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -73,7 +73,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "C",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -88,7 +88,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "PG",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -103,7 +103,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "SG",
-            "Customer_Status__c": "VIP"
+            "MV_SEL_CustomerType__c": "VIP"
         },
         {
             "attributes": {
@@ -118,7 +118,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "PG",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -133,7 +133,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "SF",
-            "Customer_Status__c": "VIP"
+            "MV_SEL_CustomerType__c": "VIP"
         },
         {
             "attributes": {
@@ -148,7 +148,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "C",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -163,7 +163,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "C",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -178,7 +178,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "SF",
-            "Customer_Status__c": "VIP"
+            "MV_SEL_CustomerType__c": "VIP"
         },
         {
             "attributes": {
@@ -193,7 +193,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "PF",
-            "Customer_Status__c": "VIP"
+            "MV_SEL_CustomerType__c": "VIP"
         },
         {
             "attributes": {
@@ -208,7 +208,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "PF",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -223,7 +223,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "SF",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -238,7 +238,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "C",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -253,7 +253,7 @@
             "MailingPostalCode": "60612",
             "MailingCountry": "US",
             "Title": "Coach",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -268,7 +268,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "SG",
-            "Customer_Status__c": "VIP"
+            "MV_SEL_CustomerType__c": "VIP"
         },
         {
             "attributes": {
@@ -283,7 +283,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "PG",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -298,7 +298,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "PG",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -313,7 +313,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "SF",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -328,7 +328,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "SF",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -343,7 +343,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "PF",
-            "Customer_Status__c": "VIP"
+            "MV_SEL_CustomerType__c": "VIP"
         },
         {
             "attributes": {
@@ -358,7 +358,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "PG",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -373,7 +373,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "PF",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -388,7 +388,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "C",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -403,7 +403,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "C",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -418,7 +418,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "C",
-            "Customer_Status__c": "VIP"
+            "MV_SEL_CustomerType__c": "VIP"
         },
         {
             "attributes": {
@@ -433,7 +433,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "PG",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -448,7 +448,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "SG",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -463,7 +463,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "PG",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -478,7 +478,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "PF",
-            "Customer_Status__c": "Standard"
+            "MV_SEL_CustomerType__c": "Standard"
         },
         {
             "attributes": {
@@ -493,7 +493,7 @@
             "MailingPostalCode": "90015",
             "MailingCountry": "US",
             "Title": "Coach",
-            "Customer_Status__c": "VIP"
+            "MV_SEL_CustomerType__c": "VIP"
         }
     ]
 }
