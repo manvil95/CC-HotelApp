@@ -16,7 +16,7 @@ public class RoomAvailableScheldueTest {
         Room__c r2 = new Room__c (Name='Test Room 2',Hotel__c = h1.Id, Room_Number__c = 5);
             insert r2;
 
-        Contact c1 = new Contact(FirstName = 'Test',LastName='User',Discount__c=0);
+        Contact c1 = new Contact(FirstName = 'Test',LastName='User',MV_PER_Discount__c=0);
             insert c1;
 
 

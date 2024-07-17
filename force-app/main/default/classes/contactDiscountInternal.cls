@@ -7,7 +7,7 @@ public with sharing class contactDiscountInternal implements IContactDiscount {
 
         for(contact c : contactId){
 
-            c.Discount__c = 40;
+            c.MV_PER_Discount__c = 40;
             contactsToUpdate.add(c);
         }
 

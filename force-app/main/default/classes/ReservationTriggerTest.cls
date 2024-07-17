@@ -12,7 +12,7 @@ public class ReservationTriggerTest {
        Contact testContact = new Contact(
             FirstName = 'Test',
             LastName = 'Contact',
-            Discount__c = 0
+            MV_PER_Discount__c = 0
        );
 
        insert testContact;

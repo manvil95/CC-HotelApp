@@ -70,9 +70,9 @@ public class ReservationTriggerHandler {
                 Reservation__c = r.Id,
                 Room__c = r.Room__c,
                 Quantity__c = r.Days_number__c,
-                Discount__c = reservationMap.get(r.Id).Guest_name__r.Discount__c,
+                Discount__c = reservationMap.get(r.Id).Guest_name__r.MV_PER_Discount__c,
                 List_Price__c =  reservationLinePicker.reservationLineProduct().reservationItem().UnitPrice * r.Days_number__c,
-                Total_Price__c = (reservationLinePicker.reservationLineProduct().reservationItem().UnitPrice * r.Days_number__c) * (1 - (reservationMap.get(r.Id).Guest_name__r.Discount__c/100))
+                Total_Price__c = (reservationLinePicker.reservationLineProduct().reservationItem().UnitPrice * r.Days_number__c) * (1 - (reservationMap.get(r.Id).Guest_name__r.MV_PER_Discount__c/100))
             );
             newReservations.add(rlineItem);
 
@@ -84,9 +84,9 @@ public class ReservationTriggerHandler {
                             Reservation__c = r.Id,
                             Room__c = r.Room__c,
                             Quantity__c = r.Days_number__c,
-                            Discount__c = reservationMap.get(r.Id).Guest_name__r.Discount__c,
+                            Discount__c = reservationMap.get(r.Id).Guest_name__r.MV_PER_Discount__c,
                             List_Price__c =  reservationLinePicker.reservationLineProduct(r.Breakfast_Type__c).reservationItem().UnitPrice * r.Days_number__c,
-                            Total_Price__c = (reservationLinePicker.reservationLineProduct(r.Breakfast_Type__c).reservationItem().UnitPrice * r.Days_number__c) * (1 - (reservationMap.get(r.Id).Guest_name__r.Discount__c/100))
+                            Total_Price__c = (reservationLinePicker.reservationLineProduct(r.Breakfast_Type__c).reservationItem().UnitPrice * r.Days_number__c) * (1 - (reservationMap.get(r.Id).Guest_name__r.MV_PER_Discount__c/100))
                         );
 
             newReservations.add(breakfast);

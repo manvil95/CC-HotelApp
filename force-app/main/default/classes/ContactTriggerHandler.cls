@@ -8,7 +8,7 @@ public with sharing class ContactTriggerHandler {
 
         for(contact c : newContact){
 
-            if(c.Customer_Status__c != oldMap.get(c.Id).Customer_Status__c){
+            if(c.MV_SEL_CustomerType__c != oldMap.get(c.Id).MV_SEL_CustomerType__c){
 
                 system.debug('New Record != old record');
 
@@ -25,8 +25,8 @@ public with sharing class ContactTriggerHandler {
 
        for(contact c :newContact){
 
-        c.Discount__c = updatedContactsMap.get(c.Id).Discount__c;
-        system.debug(updatedContactsMap.get(c.Id).Discount__c);
+        c.MV_PER_Discount__c = updatedContactsMap.get(c.Id).MV_PER_Discount__c;
+        system.debug(updatedContactsMap.get(c.Id).MV_PER_Discount__c);
 
        }
 

@@ -11,7 +11,7 @@ trigger ContactTrigger on Contact (before update) {
 
      for(contact c : trigger.New){
 
-        system.debug(c.Discount__c);
+        system.debug(c.MV_PER_Discount__c);
      }
     }
   }
