@@ -6,7 +6,7 @@
 Standard - discount based on num of TTM Reservations.
 Internal Employee - 70% discount + VIP</inlineHelpText>
     <label>Customer Type</label>
-    <required>false</required>
+    <required>true</required>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Picklist</type>
     <valueSet>
