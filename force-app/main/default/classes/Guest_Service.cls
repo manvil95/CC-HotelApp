@@ -11,9 +11,9 @@ public with sharing class Guest_Service {
 
         list<contact> contactsWithDiscount = new list<Contact>();
 
-        for(contact c :  [SELECT Id,Customer_Status__c from Contact Where Id IN: contacts]){
+        for(contact c :  [SELECT Id,MV_SEL_CustomerType__c from Contact Where Id IN: contacts]){
 
-                switch on c.Customer_Status__c{
+                switch on c.MV_SEL_CustomerType__c{
                     when 'VIP' {
                         vipContacts.add(c);
                     }

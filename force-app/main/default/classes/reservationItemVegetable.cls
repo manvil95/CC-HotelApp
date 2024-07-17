@@ -2,7 +2,12 @@ public class reservationItemVegetable implements reservationLineI {
 
     public PricebookEntry reservationItem() {
 
-        PricebookEntry i =  [Select Id,Name,Product2Id,UnitPrice from PricebookEntry WHERE Product2.isApexDefaultBreakfast__c = true AND Pricebook2.IsStandard = true AND Name = 'Breakfast - Vegetarian' LIMIT 1];
+        PricebookEntry i =  [SELECT Id,Name,Product2Id,UnitPrice 
+                            FROM PricebookEntry 
+                            WHERE Product2.MV_FLG_DefaultBreakfast__c = true 
+                                AND Pricebook2.IsStandard = true 
+                                AND Name = 'Breakfast - Vegetarian' 
+                            LIMIT 1];
 
         return i;
 

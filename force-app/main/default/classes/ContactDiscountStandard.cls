@@ -6,7 +6,7 @@ public with sharing class ContactDiscountStandard implements IContactDiscount{
 
         AggregateResult[] reservatioNumber = [SELECT count(id) reservations_count, Guest_name__c FROM Reservation__c WHERE Check_out_Date__c = LAST_N_DAYS:365 AND Guest_name__c IN:contacts GROUP BY Guest_name__c];
 
-        list<contact> clist = [SELECT Id,Customer_Status__c from Contact Where Id In: contacts];
+        list<contact> clist = [SELECT Id,MV_SEL_CustomerType__c from Contact Where Id In: contacts];
 
         for(AggregateResult agg: reservatioNumber){
 
@@ -18,18 +18,18 @@ public with sharing class ContactDiscountStandard implements IContactDiscount{
         for(Contact c : cList){
 
            if((Integer) contactMap.get(c.Id) > 5 ){
-            c.Discount__c = 30;
+            c.MV_PER_Discount__c = 30;
 
            }
            else if((Integer) contactMap.get(c.Id) > 3 ){
-            c.Discount__c = 20;
+            c.MV_PER_Discount__c = 20;
 
            }
            else if((Integer) contactMap.get(c.Id) >= 1 ){
-            c.Discount__c = 10;
+            c.MV_PER_Discount__c = 10;
            }
            else {
-            c.Discount__c = 0;
+            c.MV_PER_Discount__c = 0;
            }
 
        contactUpdateList.add(c);

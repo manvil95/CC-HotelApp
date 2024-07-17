@@ -7,7 +7,7 @@ public with sharing class ContactDiscountVIP implements IContactDiscount {
 
         for(contact c : contactId){
 
-            c.Discount__c = 70;
+            c.MV_PER_Discount__c = 70;
             contactsToUpdate.add(c);
         }
 

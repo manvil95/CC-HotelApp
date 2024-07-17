@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MV_SEL_CustomerType__c</fullName>
+    <description>Field to classify users.</description>
+    <inlineHelpText>VIP - 40% discount, access to spa, car discount,premium Wi-Fi
+Standard - discount based on num of TTM Reservations.
+Internal Employee - 70% discount + VIP</inlineHelpText>
+    <label>Customer Type</label>
+    <required>true</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>MV_Core_CustomerType</valueSetName>
+    </valueSet>
+</CustomField>
