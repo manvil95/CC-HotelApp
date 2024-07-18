@@ -57,14 +57,34 @@ public class hotelController {
     @AuraEnabled (cacheable = true)
     public static list<MV_Hotel__c> hotelListDropdown(){
 
-        return [SELECT Id,Name,MV_DIV_TrailingYearACV__c,MV_NUM_TotalRooms__c,MV_NUM_TotalRentedRooms__c,MV_NUM_RoomsOutOfService__c,MV_FOR_RatingStars__c,MV_SEL_Rating__c,MV_FOR_RatingStars__c,MV_TXT_City__c,MV_SEL_Country__c from MV_Hotel__c];
+        return [SELECT Id,
+                        Name,
+                        MV_DIV_TrailingYearACV__c,
+                        MV_NUM_TotalRooms__c,
+                        MV_NUM_TotalRentedRooms__c,
+                        MV_NUM_RoomsOutOfService__c,
+                        MV_FOR_RatingStars__c,
+                        MV_SEL_Rating__c,
+                        MV_TXT_City__c,MV_SEL_Country__c 
+                FROM MV_Hotel__c];
 
 }
 
   @AuraEnabled (cacheable = true)
     public static MV_Hotel__c returnHotelData(String Hid){
 
-        return [SELECT Id,Name,MV_DIV_TrailingYearACV__c,MV_NUM_TotalRooms__c,MV_FOR_RatingStars__c,MV_NUM_TotalRentedRooms__c,MV_NUM_RoomsOutOfService__c,MV_FOR_RatingStars__c,MV_SEL_Rating__c,MV_TXT_City__c,MV_SEL_Country__c from MV_Hotel__c WHERE Id =: Hid];
+        return [SELECT Id,
+                    Name,
+                    MV_DIV_TrailingYearACV__c,
+                    MV_NUM_TotalRooms__c,
+                    MV_NUM_TotalRentedRooms__c,
+                    MV_NUM_RoomsOutOfService__c,
+                    MV_FOR_RatingStars__c,
+                    MV_SEL_Rating__c,
+                    MV_TXT_City__c,
+                    MV_SEL_Country__c 
+                FROM MV_Hotel__c 
+                WHERE Id =: Hid];
 
     }
 }
