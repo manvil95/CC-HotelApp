@@ -45,7 +45,7 @@ public class RoomAvailableScheldueTest {
         );
         insert res2;
 
-         Reservation__c res3 = new Reservation__c(
+        Reservation__c res3 = new Reservation__c(
         Name = 'Test reservation 3',
         Room__c = r2.Id,
         Check_In_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day()-1),
