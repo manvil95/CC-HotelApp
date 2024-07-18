@@ -3,31 +3,29 @@
 //
 
 public class JSONtoRecipeBasic {
+    public class Recipes {
+        @AuraEnabled
+        public String id;
+        @AuraEnabled
+        public String title;
+        @AuraEnabled
+        public String image;
+        @AuraEnabled
+        public String summary;
+        @AuraEnabled
+        public String instructions;
+        @AuraEnabled
+        public String healthScore;
+        @AuraEnabled
+        public list<String> dishTypes;
+        @AuraEnabled
+        public String vegetarian;
+    }
 
-	public class Recipes {
-		@AuraEnabled
-		public String id;
-		@AuraEnabled
-		public String title;
-		@AuraEnabled
-		public String image;
-		@AuraEnabled
-		public String summary;
-		@AuraEnabled
-		public String instructions;
-		@AuraEnabled
-		public String healthScore;
-		@AuraEnabled
-		public list<String> dishTypes;
-		@AuraEnabled
-		public String vegetarian;
+    @AuraEnabled
+    public List<Recipes> recipes;
 
-	}
-
-	@AuraEnabled
-	public List<Recipes> recipes;
-
-	public static JSONtoRecipeBasic parse(String json) {
-		return (JSONtoRecipeBasic) System.JSON.deserialize(json, JSONtoRecipeBasic.class);
-	}
+    public static JSONtoRecipeBasic parse(String json) {
+        return (JSONtoRecipeBasic) System.JSON.deserialize(json, JSONtoRecipeBasic.class);
+    }
 }

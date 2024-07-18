@@ -1,64 +1,58 @@
 @isTest(SeeAllData=true)
 public class RoomAvailableScheldueTest {
-
- // Dummy CRON expression: midnight on March 15.
+    // Dummy CRON expression: midnight on March 15.
     // Because this is a test, job executes
     // immediately after Test.stopTest().
     public static String CRON_EXP = '0 0 0 24 8 ? 2022';
-    @isTest(SeeAllData=true) static void testScheduledJob() {
-
+    @isTest(SeeAllData=true)
+    static void testScheduledJob() {
         MV_Hotel__c h1 = new MV_Hotel__c(Name = 'Test Hotel', MV_TXT_City__c = 'Test City');
-            insert h1;
+        insert h1;
 
-        Room__c r1 = new Room__c (Name='Test Room 1',MV_Hotel__c = h1.Id,Available__c = true);
-            insert r1;
+        Room__c r1 = new Room__c(Name = 'Test Room 1', MV_Hotel__c = h1.Id, Available__c = true);
+        insert r1;
 
-        Room__c r2 = new Room__c (Name='Test Room 2',MV_Hotel__c = h1.Id, Room_Number__c = 5);
-            insert r2;
+        Room__c r2 = new Room__c(Name = 'Test Room 2', MV_Hotel__c = h1.Id, Room_Number__c = 5);
+        insert r2;
 
-        Contact c1 = new Contact(FirstName = 'Test',LastName='User',MV_PER_Discount__c=0);
-            insert c1;
+        Contact c1 = new Contact(FirstName = 'Test', LastName = 'User', MV_PER_Discount__c = 0);
+        insert c1;
 
-
-
-        list<Room__c> reservationTestbefore2 = [Select Id from  Room__c WHERE Available__c = true AND id =: r1.Id];
-        System.assertEquals(1,reservationTestbefore2.size(),'This room is available');
+        list<Room__c> reservationTestbefore2 = [SELECT Id FROM Room__c WHERE Available__c = TRUE AND id = :r1.Id];
+        System.assertEquals(1, reservationTestbefore2.size(), 'This room is available');
 
         Reservation__c res = new Reservation__c(
-        Name = 'Test reservation',
-        Room__c = r1.Id,
-        Check_In_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day()),
-        Check_out_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day()+1),
-        Guest_name__c = c1.Id
+            Name = 'Test reservation',
+            Room__c = r1.Id,
+            Check_In_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day()),
+            Check_out_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day() + 1),
+            Guest_name__c = c1.Id
         );
         insert res;
 
         Reservation__c res2 = new Reservation__c(
-        Name = 'Test reservation',
-        Room__c = r1.Id,
-        Check_In_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day()+3),
-        Check_out_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day()+5),
-        Guest_name__c = c1.Id
+            Name = 'Test reservation',
+            Room__c = r1.Id,
+            Check_In_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day() + 3),
+            Check_out_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day() + 5),
+            Guest_name__c = c1.Id
         );
         insert res2;
 
-         Reservation__c res3 = new Reservation__c(
-        Name = 'Test reservation 3',
-        Room__c = r2.Id,
-        Check_In_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day()-1),
-        Check_out_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day()),
-        Guest_name__c = c1.Id
+        Reservation__c res3 = new Reservation__c(
+            Name = 'Test reservation 3',
+            Room__c = r2.Id,
+            Check_In_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day() - 1),
+            Check_out_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day()),
+            Guest_name__c = c1.Id
         );
         insert res3;
 
-
         Test.startTest();
         // Schedule the test job
-        String jobId = System.schedule('ScheduledApexTest',
-            CRON_EXP,
-            new RoomAvailableScheldule());
+        String jobId = System.schedule('ScheduledApexTest', CRON_EXP, new RoomAvailableScheldule());
         // Verify the scheduled job has not run yet.
-        list<Reservation__c> reservationTestBefore = [Select Id from  Reservation__c WHERE Room__c =: r1.Id];
+        list<Reservation__c> reservationTestBefore = [SELECT Id FROM Reservation__c WHERE Room__c = :r1.Id];
         system.debug(reservationTestBefore);
         System.assertEquals(2, reservationTestBefore.size(), 'Tasks exist before job has run');
 
@@ -66,13 +60,11 @@ public class RoomAvailableScheldueTest {
 
         // Now that the scheduled job has executed,
         // check that our tasks were created
-        list<Room__c> reservationTestAfter = [Select Id from  Room__c WHERE Available__c = true AND id =: r1.Id];
-        System.assertEquals(0,reservationTestAfter.size(),'This room is no longer available');
-
+        list<Room__c> reservationTestAfter = [SELECT Id FROM Room__c WHERE Available__c = TRUE AND id = :r1.Id];
+        System.assertEquals(0, reservationTestAfter.size(), 'This room is no longer available');
 
         // check if room was reset to available
-        list<Room__c> reservationTestAfter2 = [Select Id from  Room__c WHERE Available__c = true AND id =: r2.Id];
-        System.assertEquals(1,reservationTestAfter2.size(),'This room is available');
-
-}
+        list<Room__c> reservationTestAfter2 = [SELECT Id FROM Room__c WHERE Available__c = TRUE AND id = :r2.Id];
+        System.assertEquals(1, reservationTestAfter2.size(), 'This room is available');
+    }
 }

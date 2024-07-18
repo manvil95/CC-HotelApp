@@ -1,22 +1,13 @@
-trigger roomTrigger on Room__c (before insert, after update, after insert) {
-
+trigger roomTrigger on Room__c(before insert, after update, after insert) {
     switch on Trigger.operationType {
-
-        WHEN BEFORE_INSERT {
-
+        when BEFORE_INSERT {
             roomTriggerHandler.beforeInsert(Trigger.New);
-
-    }
-        WHEN AFTER_UPDATE {
-
-            roomTriggerHandler.afterUpdate(Trigger.New,Trigger.oldMap);
-
-    }
-        WHEN AFTER_INSERT {
-
+        }
+        when AFTER_UPDATE {
+            roomTriggerHandler.afterUpdate(Trigger.New, Trigger.oldMap);
+        }
+        when AFTER_INSERT {
             roomTriggerHandler.afterInsert(Trigger.New);
-
+        }
     }
-
-}
 }
