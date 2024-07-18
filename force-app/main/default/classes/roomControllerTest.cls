@@ -10,7 +10,7 @@ public with sharing class roomControllerTest {
     Room__c r1 = new Room__c(Name = 'Test Single Room 1', Hotel__c = hotel.Id,Max_Number_of_Guests__c = 5);
     insert r1;
 
-    Room__c r2 = new Room__c(Name = 'Test Single Room 2', Hotel__c = hotel.Id,Max_Number_of_Guests__c = 5, Type__c = 'Double',Room_Number__c = 2);
+    Room__c r2 = new Room__c(Name = 'Test Single Room 2', Hotel__c = hotel.Id,Max_Number_of_Guests__c = 5, Type__c = 'Double',Room_Number__c = 200);
     insert r2;
 
     }
