@@ -1,4 +1,4 @@
-trigger hotelTrigger on Hotel__c (after insert) {
+trigger hotelTrigger on MV_Hotel__c (after insert) {
 
      switch on Trigger.operationType {
 
