@@ -1,16 +1,12 @@
-public with sharing class ContactMapMarker implements IMapMarker{
-
-    public list<sObject> getRecords(){
-
-        return [SELECT Id, Name, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingStreet FROM Contact WHERE MailingCountry <>Null LIMIT 20];
+public with sharing class ContactMapMarker implements IMapMarker {
+    public list<sObject> getRecords() {
+        return [SELECT Id, Name, MailingCity, MailingState, MailingPostalCode, MailingCountry, MailingStreet FROM Contact WHERE MailingCountry != NULL LIMIT 20];
     }
 
-    public list<Object> wrapRecordForUI(list<sObject> sObjectRecords){
+    public list<Object> wrapRecordForUI(list<sObject> sObjectRecords) {
+        list<MapMarker> mapMarkersList = new List<MapMarker>();
 
-        list<MapMarker> mapMarkersList = new list<MapMarker>();
-
-            for(Contact c: (list<Contact>)sObjectRecords){
-
+        for (Contact c : (list<Contact>) sObjectRecords) {
             MapMarker marker = new MapMarker();
             //MapLocation location = new MapLocation();
 
@@ -19,19 +15,13 @@ public with sharing class ContactMapMarker implements IMapMarker{
             marker.location.Street = c.MailingStreet;
             marker.location.PostalCode = c.MailingPostalCode;
 
-
             marker.description = 'This is Contact description.';
             marker.title = c.Name;
             //marker.location = location;
 
             mapMarkersList.add(marker);
+        }
 
-            }
-
-            return mapMarkersList;
-
-
+        return mapMarkersList;
     }
-
-
 }

@@ -94,7 +94,7 @@ export default class HotelFilterAppHome extends LightningElement {
         if (data) {
 
             data.forEach(element => {
-                this.countryList = [...this.countryList, { "label": element.Country__c, "value": element.Country__c }];
+                this.countryList = [...this.countryList, { "label": element.MV_SEL_Country__c, "value": element.MV_SEL_Country__c }];
             });
         }
         if (error) {
@@ -109,7 +109,7 @@ export default class HotelFilterAppHome extends LightningElement {
             this.cityList = [];
             result.forEach(element => {
 
-                this.cityList = [...this.cityList, { "label": element.City__c, "value": element.City__c }];
+                this.cityList = [...this.cityList, { "label": element.MV_TXT_City__c, "value": element.MV_TXT_City__c }];
             });
 
         }).catch((error) => {

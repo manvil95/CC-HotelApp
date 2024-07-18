@@ -2,156 +2,156 @@
     "records": [
         {
             "attributes": {
-                "type": "Hotel__c",
-                "referenceId": "Hotel__cRef1"
+                "type": "MV_Hotel__c",
+                "referenceId": "MV_Hotel__cRef1"
             },
             "Name": "Olympic Hotel San Francisco",
-            "Rating__c": "3",
-            "total_rooms__c": 4,
-            "Rooms_Available__c": 4,
-            "Rooms_out_of_service__c": 0,
-            "TTM_ACV__c": 10128,
-            "City__c": "San Francisco",
-            "Street__c": null,
-            "zip_code__c": null,
-            "Total_Rented_Rooms__c": null,
-            "Country__c": "United States"
+            "MV_SEL_Rating__c": "3",
+            "MV_NUM_TotalRooms__c": 4,
+            "MV_NUM_AvailableRooms__c": 4,
+            "MV_NUM_RoomsOutOfService__c": 0,
+            "MV_DIV_TrailingYearACV__c": 10128,
+            "MV_TXT_City__c": "San Francisco",
+            "MV_TXT_Street__c": null,
+            "MV_TXT_PostalCode__c": null,
+            "MV_NUM_TotalRentedRooms__c": null,
+            "MV_SEL_Country__c": "France"
         },
         {
             "attributes": {
-                "type": "Hotel__c",
-                "referenceId": "Hotel__cRef2"
+                "type": "MV_Hotel__c",
+                "referenceId": "MV_Hotel__cRef2"
             },
-            "Name": "Olympic Munich",
-            "Rating__c": "5",
-            "total_rooms__c": 4,
-            "Rooms_Available__c": 3,
-            "Rooms_out_of_service__c": 0,
-            "TTM_ACV__c": 3680,
-            "City__c": "Munich",
-            "Street__c": null,
-            "zip_code__c": null,
-            "Total_Rented_Rooms__c": 1,
-            "Country__c": "Germany"
+            "Name": "Olympic Madrid",
+            "MV_SEL_Rating__c": "5",
+            "MV_NUM_TotalRooms__c": 4,
+            "MV_NUM_AvailableRooms__c": 3,
+            "MV_NUM_RoomsOutOfService__c": 0,
+            "MV_DIV_TrailingYearACV__c": 3680,
+            "MV_TXT_City__c": "Madrid",
+            "MV_TXT_Street__c": null,
+            "MV_TXT_PostalCode__c": null,
+            "MV_NUM_TotalRentedRooms__c": 1,
+            "MV_SEL_Country__c": "Spain"
         },
         {
             "attributes": {
-                "type": "Hotel__c",
-                "referenceId": "Hotel__cRef3"
+                "type": "MV_Hotel__c",
+                "referenceId": "MV_Hotel__cRef3"
             },
             "Name": "test hotel",
-            "Rating__c": null,
-            "total_rooms__c": 4,
-            "Rooms_Available__c": 4,
-            "Rooms_out_of_service__c": 0,
-            "TTM_ACV__c": null,
-            "City__c": "mirkow",
-            "Street__c": null,
-            "zip_code__c": null,
-            "Total_Rented_Rooms__c": null,
-            "Country__c": null
+            "MV_SEL_Rating__c": null,
+            "MV_NUM_TotalRooms__c": 4,
+            "MV_NUM_AvailableRooms__c": 4,
+            "MV_NUM_RoomsOutOfService__c": 0,
+            "MV_DIV_TrailingYearACV__c": null,
+            "MV_TXT_City__c": "mirkow",
+            "MV_TXT_Street__c": null,
+            "MV_TXT_PostalCode__c": null,
+            "MV_NUM_TotalRentedRooms__c": null,
+            "MV_SEL_Country__c": null
         },
         {
             "attributes": {
-                "type": "Hotel__c",
-                "referenceId": "Hotel__cRef4"
+                "type": "MV_Hotel__c",
+                "referenceId": "MV_Hotel__cRef4"
             },
             "Name": "Olympic Hotel Poznan",
-            "Rating__c": "5",
-            "total_rooms__c": 4,
-            "Rooms_Available__c": 4,
-            "Rooms_out_of_service__c": 0,
-            "TTM_ACV__c": 0,
-            "City__c": "Poznan",
-            "Street__c": null,
-            "zip_code__c": null,
-            "Total_Rented_Rooms__c": null,
-            "Country__c": null
+            "MV_SEL_Rating__c": "5",
+            "MV_NUM_TotalRooms__c": 4,
+            "MV_NUM_AvailableRooms__c": 4,
+            "MV_NUM_RoomsOutOfService__c": 0,
+            "MV_DIV_TrailingYearACV__c": 0,
+            "MV_TXT_City__c": "Poznan",
+            "MV_TXT_Street__c": null,
+            "MV_TXT_PostalCode__c": null,
+            "MV_NUM_TotalRentedRooms__c": null,
+            "MV_SEL_Country__c": null
         },
         {
             "attributes": {
-                "type": "Hotel__c",
-                "referenceId": "Hotel__cRef5"
+                "type": "MV_Hotel__c",
+                "referenceId": "MV_Hotel__cRef5"
             },
             "Name": "Olympic Hotel Wroclaw",
-            "Rating__c": null,
-            "total_rooms__c": 4,
-            "Rooms_Available__c": 4,
-            "Rooms_out_of_service__c": 0,
-            "TTM_ACV__c": 0,
-            "City__c": "Wroclaw",
-            "Street__c": null,
-            "zip_code__c": null,
-            "Total_Rented_Rooms__c": null,
-            "Country__c": null
+            "MV_SEL_Rating__c": null,
+            "MV_NUM_TotalRooms__c": 4,
+            "MV_NUM_AvailableRooms__c": 4,
+            "MV_NUM_RoomsOutOfService__c": 0,
+            "MV_DIV_TrailingYearACV__c": 0,
+            "MV_TXT_City__c": "Wroclaw",
+            "MV_TXT_Street__c": null,
+            "MV_TXT_PostalCode__c": null,
+            "MV_NUM_TotalRentedRooms__c": null,
+            "MV_SEL_Country__c": null
         },
         {
             "attributes": {
-                "type": "Hotel__c",
-                "referenceId": "Hotel__cRef6"
+                "type": "MV_Hotel__c",
+                "referenceId": "MV_Hotel__cRef6"
             },
             "Name": "Olympic Hotel Bilgoraj",
-            "Rating__c": "5",
-            "total_rooms__c": 4,
-            "Rooms_Available__c": 4,
-            "Rooms_out_of_service__c": 0,
-            "TTM_ACV__c": 3108,
-            "City__c": "Bilgoraj",
-            "Street__c": null,
-            "zip_code__c": null,
-            "Total_Rented_Rooms__c": null,
-            "Country__c": "Poland"
+            "MV_SEL_Rating__c": "5",
+            "MV_NUM_TotalRooms__c": 4,
+            "MV_NUM_AvailableRooms__c": 4,
+            "MV_NUM_RoomsOutOfService__c": 0,
+            "MV_DIV_TrailingYearACV__c": 3108,
+            "MV_TXT_City__c": "Bilgoraj",
+            "MV_TXT_Street__c": null,
+            "MV_TXT_PostalCode__c": null,
+            "MV_NUM_TotalRentedRooms__c": null,
+            "MV_SEL_Country__c": "Poland"
         },
         {
             "attributes": {
-                "type": "Hotel__c",
-                "referenceId": "Hotel__cRef7"
+                "type": "MV_Hotel__c",
+                "referenceId": "MV_Hotel__cRef7"
             },
             "Name": "Olympic Hotel Bethesda",
-            "Rating__c": "5",
-            "total_rooms__c": 4,
-            "Rooms_Available__c": 4,
-            "Rooms_out_of_service__c": 0,
-            "TTM_ACV__c": 108,
-            "City__c": "Bethesda",
-            "Street__c": null,
-            "zip_code__c": null,
-            "Total_Rented_Rooms__c": null,
-            "Country__c": "United States"
+            "MV_SEL_Rating__c": "5",
+            "MV_NUM_TotalRooms__c": 4,
+            "MV_NUM_AvailableRooms__c": 4,
+            "MV_NUM_RoomsOutOfService__c": 0,
+            "MV_DIV_TrailingYearACV__c": 108,
+            "MV_TXT_City__c": "Bethesda",
+            "MV_TXT_Street__c": null,
+            "MV_TXT_PostalCode__c": null,
+            "MV_NUM_TotalRentedRooms__c": null,
+            "MV_SEL_Country__c": "Sweden"
         },
         {
             "attributes": {
-                "type": "Hotel__c",
-                "referenceId": "Hotel__cRef8"
+                "type": "MV_Hotel__c",
+                "referenceId": "MV_Hotel__cRef8"
             },
             "Name": "Olypmpic Hotel London",
-            "Rating__c": null,
-            "total_rooms__c": 4,
-            "Rooms_Available__c": 4,
-            "Rooms_out_of_service__c": 0,
-            "TTM_ACV__c": 1680,
-            "City__c": "London",
-            "Street__c": null,
-            "zip_code__c": null,
-            "Total_Rented_Rooms__c": null,
-            "Country__c": "United Kingdom"
+            "MV_SEL_Rating__c": null,
+            "MV_NUM_TotalRooms__c": 4,
+            "MV_NUM_AvailableRooms__c": 4,
+            "MV_NUM_RoomsOutOfService__c": 0,
+            "MV_DIV_TrailingYearACV__c": 1680,
+            "MV_TXT_City__c": "London",
+            "MV_TXT_Street__c": null,
+            "MV_TXT_PostalCode__c": null,
+            "MV_NUM_TotalRentedRooms__c": null,
+            "MV_SEL_Country__c": "United Kingdom"
         },
         {
             "attributes": {
-                "type": "Hotel__c",
-                "referenceId": "Hotel__cRef9"
+                "type": "MV_Hotel__c",
+                "referenceId": "MV_Hotel__cRef9"
             },
             "Name": "Olympic Hotel NY",
-            "Rating__c": "5",
-            "total_rooms__c": 4,
-            "Rooms_Available__c": 4,
-            "Rooms_out_of_service__c": 0,
-            "TTM_ACV__c": 0,
-            "City__c": "New York",
-            "Street__c": null,
-            "zip_code__c": null,
-            "Total_Rented_Rooms__c": null,
-            "Country__c": "United States"
+            "MV_SEL_Rating__c": "5",
+            "MV_NUM_TotalRooms__c": 4,
+            "MV_NUM_AvailableRooms__c": 4,
+            "MV_NUM_RoomsOutOfService__c": 0,
+            "MV_DIV_TrailingYearACV__c": 0,
+            "MV_TXT_City__c": "New York",
+            "MV_TXT_Street__c": null,
+            "MV_TXT_PostalCode__c": null,
+            "MV_NUM_TotalRentedRooms__c": null,
+            "MV_SEL_Country__c": "Italy"
         }
     ]
 }

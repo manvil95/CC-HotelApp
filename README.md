@@ -12,6 +12,38 @@
 
 ### Objects Refactor
 
+#### MV_Hotel__c
+
+##### Fields
+
+- CreatedById
+- LastModifiedById
+- MV_DIV_TrailingYearACV__c
+- MV_FOR_RatingStars__c
+- MV_NUM_AvailableRooms__c
+- MV_NUM_RoomsOutOfService__c
+- MV_NUM_TotalRentedRooms__c
+- MV_NUM_TotalRooms__c
+- MV_SEL_Country__c
+- MV_SEL_Rating__c
+- MV_TXT_City__c
+- MV_TXT_PostalCode__c
+- MV_TXT_Street__c
+- Name
+- OwnerId
+
+##### Page Layout
+
+- MV_Hotel__c-Hotel Layout
+
+
+### Picklist Value Set
+
+- MV_Core_Country
+- MV_Core_CustomerType
+- MV_Core_Decision
+- MV_Core_Rating
+
 ## _Previous_ CC Hotel App
 
 CC Hotel App is build to manage reservation for for CC hotel company. It includes LWC UI for support team to manage customer reservations

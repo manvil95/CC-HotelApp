@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Rating_Stars__c</fullName>
-    <description>Image representation of Rating__c field</description>
+    <fullName>MV_FOR_RatingStars__c</fullName>
+    <description>Image representation of MV_SEL_Rating__c field.</description>
     <externalId>false</externalId>
     <formula>IMAGE( 
-CASE( Rating__c, 
+CASE( MV_SEL_Rating__c, 
 &quot;1&quot;, &quot;/img/samples/stars_100.gif&quot;,
 &quot;2&quot;, &quot;/img/samples/stars_200.gif&quot;,
 &quot;3&quot;, &quot;/img/samples/stars_300.gif&quot;, 
@@ -12,8 +12,8 @@ CASE( Rating__c,
 &quot;5&quot;, &quot;/img/samples/stars_500.gif&quot;, 
 &quot;/img/samples/stars_000.gif&quot;), 
 &quot;rating&quot;)</formula>
-    <inlineHelpText>Custom formula based on Rating__c</inlineHelpText>
-    <label>Rating</label>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Rating Stars</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

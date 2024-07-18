@@ -32,11 +32,11 @@ export default class HotelThreeSixtyHeader extends LightningElement {
             this.hotelList = [];
 
             result.forEach(element => {
-                this.hotelList = [...this.hotelList, { "label": element.Name, "value": element.Id, "Id": element.Id, "Rooms_Available__c": element.Rooms_Available__c, "Rating__c": element.Rating__c, "RatingStar": element.Rating_Stars__c ,"TTM_ACV__c": element.TTM_ACV__c}];
+                this.hotelList = [...this.hotelList, { "label": element.Name, "value": element.Id, "Id": element.Id, "MV_FOR_RatingStars__c": element.MV_FOR_RatingStars__c, "MV_SEL_Rating__c": element.MV_SEL_Rating__c, "RatingStar": element.MV_FOR_RatingStars__c ,"MV_DIV_TrailingYearACV__c": element.MV_DIV_TrailingYearACV__c}];
             });
             this.hotelValue = this.hotelList[0].Id;
-            this.hotelRating = this.hotelList[0].Rating__c;
-            this.hotelTTMacv = this.hotelList[0].TTM_ACV__c;
+            this.hotelRating = this.hotelList[0].MV_SEL_Rating__c;
+            this.hotelTTMacv = this.hotelList[0].MV_DIV_TrailingYearACV__c;
             this.handleRatingStar(this.hotelRating);
 
             //Publish Message from Message Channel
@@ -55,8 +55,8 @@ export default class HotelThreeSixtyHeader extends LightningElement {
 
             this.hotelSelectedData = result;
             console.log('data retrived frm selectedHotelData = ', this.hotelSelectedData);
-            this.hotelTTMacv = this.hotelSelectedData.TTM_ACV__c;
-            this.handleRatingStar(this.hotelSelectedData.Rating__c);
+            this.hotelTTMacv = this.hotelSelectedData.MV_DIV_TrailingYearACV__c;
+            this.handleRatingStar(this.hotelSelectedData.MV_SEL_Rating__c);
 
         }).catch((error) => {
             console.error(error);

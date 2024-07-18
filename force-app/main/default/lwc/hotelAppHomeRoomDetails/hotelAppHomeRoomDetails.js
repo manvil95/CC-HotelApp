@@ -15,12 +15,12 @@ import RESERVATION_BREAKFASTTYPE from '@salesforce/schema/Reservation__c.Breakfa
 import {subscribe,MessageContext} from 'lightning/messageService';
 
 import SELECTED_ID from '@salesforce/messageChannel/roomId__c';
-import HOTEL_NAME from '@salesforce/schema/Hotel__c.Name';
+import HOTEL_NAME from '@salesforce/schema/MV_Hotel__c.Name';
 
 const FIELDS = [
     'Room__c.Name',
     'Room__c.Available__c',
-    'Room__c.Hotel__c',
+    'Room__c.MV_Hotel__c',
     'Room__c.Mini_Bar__c',
     'Room__c.photo_url__c',
     'Room__c.Room_Number__c',
@@ -74,7 +74,7 @@ export default class HotelAppHomeRoomDetails extends NavigationMixin(LightningEl
                 this.Type__c = data.fields.Type__c.value,
                 this.tv__c = data.fields.tv__c.value,
                 this.Max_Number_of_Guests__c = data.fields.Max_Number_of_Guests__c.value,
-                this.hotel = data.fields.Hotel__c.value
+                this.hotel = data.fields.MV_Hotel__c.value
         }
         if (error) {
             console.error(error);

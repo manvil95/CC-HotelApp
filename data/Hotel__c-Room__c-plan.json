@@ -1,6 +1,6 @@
 [
     {
-        "sobject": "Hotel__c",
+        "sobject": "MV_Hotel__c",
         "saveRefs": true,
         "resolveRefs": false,
         "files": [

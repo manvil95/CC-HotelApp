@@ -1,12 +1,9 @@
 public with sharing class DataSetup {
+    public static void updateRoomImg() {
+        list<Room__c> roomList = [SELECT Id, Name FROM Room__c];
 
-    public static void updateRoomImg(){
-    list<Room__c> roomList = [Select Id,Name from Room__c];
-
-    for(Room__c r: roomList){
-
-        r.photo_url__c = Consts.ROOM_IMAGE.IMAGE_SOURCE.ImageUrl + '/photo' + Integer.valueof((1+ Math.random() * 10)) + '.jpg';
+        for (Room__c r : roomList) {
+            r.photo_url__c = Consts.ROOM_IMAGE.IMAGE_SOURCE.ImageUrl + '/photo' + Integer.valueof((1 + Math.random() * 10)) + '.jpg';
+        }
     }
-}
-
 }

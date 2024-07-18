@@ -1,6 +1,3 @@
 public interface ICaseClose {
-
-
- void determineIfClose(list<Opportunity> opptyList);
-
+    void determineIfClose(list<Opportunity> opptyList);
 }

@@ -1,49 +1,44 @@
 public with sharing class Guest_Service {
-
-    public static List<Contact> discountCalculator(List<Contact> contacts){
-
+    public static List<Contact> discountCalculator(List<Contact> contacts) {
         /*
         Create list for each type of customer
         */
-        list<contact> vipContacts = new list<contact>();
-        list<contact> standardContacts = new list<contact>();
-        list<contact> internalContacts = new list<contact>();
+        list<contact> vipContacts = new List<contact>();
+        list<contact> standardContacts = new List<contact>();
+        list<contact> internalContacts = new List<contact>();
 
-        list<contact> contactsWithDiscount = new list<Contact>();
+        list<contact> contactsWithDiscount = new List<Contact>();
 
-        for(contact c :  [SELECT Id,MV_SEL_CustomerType__c from Contact Where Id IN: contacts]){
-
-                switch on c.MV_SEL_CustomerType__c{
-                    when 'VIP' {
-                        vipContacts.add(c);
-                    }
-                    when 'Standard' {
-                        system.debug('Andt is sstandard!!');
-                        standardContacts.add(c);
-                    }
-                    when 'Internal Employee' {
-                        internalContacts.add(c);
-                    }
+        for (contact c : [SELECT Id, MV_SEL_CustomerType__c FROM Contact WHERE Id IN :contacts]) {
+            switch on c.MV_SEL_CustomerType__c {
+                when 'VIP' {
+                    vipContacts.add(c);
+                }
+                when 'Standard' {
+                    system.debug('Andt is sstandard!!');
+                    standardContacts.add(c);
+                }
+                when 'Internal Employee' {
+                    internalContacts.add(c);
+                }
             }
         }
 
-
-        if(!vipContacts.isEmpty()){
-        IContactDiscount vip = (IContactDiscount) new ContactDiscountVIP();
-        contactsWithDiscount.addAll(vip.calculateDiscount(vipContacts));
+        if (!vipContacts.isEmpty()) {
+            IContactDiscount vip = (IContactDiscount) new ContactDiscountVIP();
+            contactsWithDiscount.addAll(vip.calculateDiscount(vipContacts));
         }
 
-        if(!standardContacts.isEmpty()){
-        IContactDiscount standard = (IContactDiscount) new ContactDiscountStandard();
-        contactsWithDiscount.addAll(standard.calculateDiscount(standardContacts));
+        if (!standardContacts.isEmpty()) {
+            IContactDiscount standard = (IContactDiscount) new ContactDiscountStandard();
+            contactsWithDiscount.addAll(standard.calculateDiscount(standardContacts));
         }
 
-        if(!internalContacts.isEmpty()){
-        IContactDiscount internal = (IContactDiscount) new contactDiscountInternal();
-        contactsWithDiscount.addAll(internal.calculateDiscount(internalContacts));
+        if (!internalContacts.isEmpty()) {
+            IContactDiscount internal = (IContactDiscount) new contactDiscountInternal();
+            contactsWithDiscount.addAll(internal.calculateDiscount(internalContacts));
         }
 
-
-    return contactsWithDiscount;
-}
+        return contactsWithDiscount;
+    }
 }
