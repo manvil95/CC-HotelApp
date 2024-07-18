@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MV_DIV_TrailingYearACV__c</fullName>
+    <description>This field measures the total annualized revenue from contracts over the last 12 months, providing a snapshot of recent business performance.</description>
+    <label>Trailing Year ACV</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

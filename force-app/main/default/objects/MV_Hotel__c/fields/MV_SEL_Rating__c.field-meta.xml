@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MV_SEL_Rating__c</fullName>
+    <description>Indicates the hotel&apos;s rating.</description>
+    <label>Rating</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>MV_Core_Rating</valueSetName>
+    </valueSet>
+</CustomField>
