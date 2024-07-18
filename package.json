@@ -12,6 +12,9 @@
     "test:unit:coverage": "sfdx-lwc-jest --coverage",
     "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
     "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+    "prettier:format:apex:all": "prettier --write \"**/*.{cls,trigger}\"",
+    "prettier:format:visualforce:all": "prettier --write \"**/*.{page,}\"",
+    "prettier:format:lwc:aura:all": "prettier --write '**/*.{html,js,css,cmp,component}'",
     "postinstall": "husky install",
     "precommit": "lint-staged"
   },
@@ -27,8 +30,8 @@
     "eslint-plugin-jest": "^24.3.6",
     "husky": "^7.0.0",
     "lint-staged": "^11.0.0",
-    "prettier": "2.7.1",
-    "prettier-plugin-apex": "1.13.0"
+    "prettier": "^2.7.1",
+    "prettier-plugin-apex": "^1.13.0"
   },
   "lint-staged": {
     "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
