@@ -15,7 +15,7 @@ public class roomTriggerHandler {
             }
 
         // Populate map with Hotel Ids and List of Rooms
-        For(Hotel__c hotel :[Select Id,total_rooms__c, (SELECT Room_Number__c from Rooms__r) FROM
+        For(Hotel__c hotel :[Select Id,MV_NUM_TotalRooms__c, (SELECT Room_Number__c from Rooms__r) FROM
                    Hotel__c WHERE Id IN: hotelIds]){
 
         hotelWithRoom.put(hotel.Id,hotel.rooms__r);

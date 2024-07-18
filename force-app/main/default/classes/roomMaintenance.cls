@@ -107,7 +107,7 @@ public class roomMaintenance {
 
         for(Hotel__c h : hotelsList){
 
-            h.total_rooms__c = hotelwithRoomCount.get(h.Id);
+            h.MV_NUM_TotalRooms__c = hotelwithRoomCount.get(h.Id);
             updateListHotels.add(h);
         }
         update updateListHotels;

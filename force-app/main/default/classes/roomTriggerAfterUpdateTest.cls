@@ -6,17 +6,17 @@ public class roomTriggerAfterUpdateTest {
 //Create hotel to test
     Hotel__c h = new hotel__c (
         Name = 'tst',
-        City__c = 'Nibylandia',
-        total_rooms__c = 5,
-        Rooms_Available__c = 5);
+        MV_TXT_City__c = 'Nibylandia',
+        MV_NUM_TotalRooms__c = 5,
+        MV_FOR_RatingStars__c = 5);
 
         insert h;
 
     Hotel__c h2 = new hotel__c (
         Name = 'tst2',
-        City__c = 'Nibylandia2',
-        total_rooms__c = 5,
-        Rooms_Available__c = 5);
+        MV_TXT_City__c = 'Nibylandia2',
+        MV_NUM_TotalRooms__c = 5,
+        MV_FOR_RatingStars__c = 5);
 
         insert h2;
 
@@ -101,11 +101,11 @@ test.startTest();
 
 Test.stopTest();
 
-Hotel__c hotelData = [Select Id,Rooms_out_of_service__c,Rooms_Available__c,Total_Rented_Rooms__c from Hotel__c WHERE Name = 'tst'];
+Hotel__c hotelData = [Select Id,MV_NUM_RoomsOutOfService__c,MV_FOR_RatingStars__c,MV_NUM_TotalRentedRooms__c from Hotel__c WHERE Name = 'tst'];
 system.debug(hotelData);
 
-system.assertEquals(32,hotelData.Rooms_Available__c);
-system.assertEquals(50,hotelData.Rooms_out_of_service__c);
+system.assertEquals(32,hotelData.MV_FOR_RatingStars__c);
+system.assertEquals(50,hotelData.MV_NUM_RoomsOutOfService__c);
 
 }
 

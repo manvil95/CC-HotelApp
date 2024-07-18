@@ -4,7 +4,7 @@ public with sharing class hotelControllerTest {
     @TestSetup
     static void makeData(){
 
-        Hotel__c h1 = new Hotel__c(Name='Test Hotel',City__c = 'Test City',Country__c = 'Poland');
+        Hotel__c h1 = new Hotel__c(Name='Test Hotel',MV_TXT_City__c = 'Test City',MV_SEL_Country__c = 'Poland');
         insert h1;
 
     }
@@ -18,13 +18,13 @@ public with sharing class hotelControllerTest {
     list<AggregateResult> cList2 = hotelController.CityList('Poland');
     system.debug(cList2);
 
-    Object city = cList2[0].get('City__c');
+    Object city = cList2[0].get('MV_TXT_City__c');
     system.assertEquals(city, 'Test City');
 
      list<AggregateResult> cListnull = hotelController.CityList('');
     system.debug(cListnull);
 
-    Object citynull = cListnull[0].get('City__c');
+    Object citynull = cListnull[0].get('MV_TXT_City__c');
     system.assertEquals(citynull, 'Test City');
 
     }

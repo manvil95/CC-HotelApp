@@ -48,13 +48,13 @@ public class roomController {
             if(filterData.country != null){
 
                 countryName = filterData.country;
-                logicList.add('Hotel__r.Country__c =: countryName');
+                logicList.add('Hotel__r.MV_SEL_Country__c =: countryName');
 
         }
             if(filterData.city != null){
 
                 cityName = filterData.city;
-                logicList.add('Hotel__r.City__c =: cityName');
+                logicList.add('Hotel__r.MV_TXT_City__c =: cityName');
 
             }
             if(filterData.hotel != null){
@@ -117,7 +117,7 @@ public class roomController {
                 }
         }
 
-        queryLogic = 'Select Id,Hotel__r.Name,Hotel__r.City__c,Hotel__r.Country__c,Name, (SELECT Id, Name, Check_In_Date__c, Check_out_Date__c, Room__c FROM Reservations__r), Available__c,Type__c,Room_Number__c,photo_url__c,Max_Number_of_Guests__c FROM Room__c' + logic;
+        queryLogic = 'Select Id,Hotel__r.Name,Hotel__r.MV_TXT_City__c,Hotel__r.MV_SEL_Country__c,Name, (SELECT Id, Name, Check_In_Date__c, Check_out_Date__c, Room__c FROM Reservations__r), Available__c,Type__c,Room_Number__c,photo_url__c,Max_Number_of_Guests__c FROM Room__c' + logic;
 
         list<Room__c> roomList = Database.query(queryLogic);
 

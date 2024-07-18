@@ -6,8 +6,8 @@ static testMethod void testUnit(){
 //Create hotel to test
 Hotel__c h = new hotel__c (
     Name = 'tst',
-    City__c = 'Nibylandia',
-    total_rooms__c = 5);
+    MV_TXT_City__c = 'Nibylandia',
+    MV_NUM_TotalRooms__c = 5);
 insert h;
 
 // Create 1 room to check against

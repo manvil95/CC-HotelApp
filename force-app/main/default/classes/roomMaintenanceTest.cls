@@ -4,7 +4,7 @@ public with sharing class roomMaintenanceTest {
     @TestSetup
     static void makeData(){
 
-        Hotel__c testHotel = new Hotel__c(Name = 'Test Hotel',City__c='Wroclaw',Country__c='Poland',total_rooms__c = 0);
+        Hotel__c testHotel = new Hotel__c(Name = 'Test Hotel',MV_TXT_City__c='Wroclaw',MV_SEL_Country__c='Poland',MV_NUM_TotalRooms__c = 0);
         insert testHotel;
     }
 
@@ -18,10 +18,10 @@ public with sharing class roomMaintenanceTest {
 
         roomMaintenance.updateHotelRoomsCount(hList);
 
-         list<Hotel__c> hroom = [SELECT Id,Name,total_rooms__c From Hotel__c];
+         list<Hotel__c> hroom = [SELECT Id,Name,MV_NUM_TotalRooms__c From Hotel__c];
          system.debug(hroom);
 
-         system.assertEquals(hroom[0].total_rooms__c, 4);
+         system.assertEquals(hroom[0].MV_NUM_TotalRooms__c, 4);
 
 
          roomMaintenance.updateRoomNumbers(hList);

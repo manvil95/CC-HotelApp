@@ -7,7 +7,7 @@ public class RoomAvailableScheldueTest {
     public static String CRON_EXP = '0 0 0 24 8 ? 2022';
     @isTest(SeeAllData=true) static void testScheduledJob() {
 
-        Hotel__c h1 = new Hotel__c(Name = 'Test Hotel', City__c = 'Test City');
+        Hotel__c h1 = new Hotel__c(Name = 'Test Hotel', MV_TXT_City__c = 'Test City');
             insert h1;
 
         Room__c r1 = new Room__c (Name='Test Room 1',Hotel__c = h1.Id,Available__c = true);

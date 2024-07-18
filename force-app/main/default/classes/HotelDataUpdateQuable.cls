@@ -29,16 +29,16 @@ public class HotelDataUpdateQuable {
         HotelRentedleCT.put((Id)arOccupied.get('Hotel__c'),(Integer)arOccupied.get('ct'));
     }
 
-    for(Hotel__c h: [SELECT Id,Rooms_out_of_service__c FROM Hotel__c WHERE Id In: recordIds]){
+    for(Hotel__c h: [SELECT Id,MV_NUM_RoomsOutOfService__c FROM Hotel__c WHERE Id In: recordIds]){
 
         if(aggService.size() == 0){
-        h.Rooms_out_of_service__c = 0;
+        h.MV_NUM_RoomsOutOfService__c = 0;
         }
         else{
-            h.Rooms_out_of_service__c = HotelServiceCT.get(h.Id);
+            h.MV_NUM_RoomsOutOfService__c = HotelServiceCT.get(h.Id);
         }
-        h.Rooms_Available__c = HotelAvialableCT.get(h.Id);
-        h.Total_Rented_Rooms__c = HotelRentedleCT.get(h.Id);
+        h.MV_FOR_RatingStars__c = HotelAvialableCT.get(h.Id);
+        h.MV_NUM_TotalRentedRooms__c = HotelRentedleCT.get(h.Id);
 
         HotelUpdateList.add(h);
 

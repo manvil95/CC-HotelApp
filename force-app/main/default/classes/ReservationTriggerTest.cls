@@ -19,7 +19,7 @@ public class ReservationTriggerTest {
 
        Hotel__c testHotel = new Hotel__c(
            Name = 'Test',
-           City__c = 'Test city'
+           MV_TXT_City__c = 'Test city'
        );
 
        insert testHotel;

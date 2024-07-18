@@ -1,6 +1,6 @@
 public with sharing class updateHotelMetricsBatchable implements Database.Batchable<sObject> {
 
-    public String query = 'SELECT Id,TTM_ACV__c from Hotel__c';
+    public String query = 'SELECT Id,MV_DIV_TrailingYearACV__c from Hotel__c';
 
     public Database.QueryLocator start(Database.BatchableContext BC){
       return Database.getQueryLocator(query);
@@ -22,10 +22,10 @@ public with sharing class updateHotelMetricsBatchable implements Database.Batcha
         for(hotel__c h:scope){
 
             if(aggACV.containsKey(h.id)){
-                    h.TTM_ACV__c = aggACV.get(h.id);
+                    h.MV_DIV_TrailingYearACV__c = aggACV.get(h.id);
             }
             else{
-                    h.TTM_ACV__c = 0;
+                    h.MV_DIV_TrailingYearACV__c = 0;
                 }
 
         hotelToUpdate.add(h);
