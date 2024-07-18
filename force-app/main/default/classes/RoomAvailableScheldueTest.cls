@@ -22,7 +22,7 @@ public class RoomAvailableScheldueTest {
             MV_PER_Discount__c=0, 
             MV_SEL_CustomerType__c='Standard'
         );
-            insert c1;
+        insert c1;  
 
 
 
