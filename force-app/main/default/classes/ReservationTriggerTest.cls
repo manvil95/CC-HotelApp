@@ -17,7 +17,7 @@ public class ReservationTriggerTest {
 
        insert testContact;
 
-       Hotel__c testHotel = new Hotel__c(
+       MV_Hotel__c testHotel = new MV_Hotel__c(
            Name = 'Test',
            MV_TXT_City__c = 'Test city'
        );
@@ -26,7 +26,7 @@ public class ReservationTriggerTest {
 
        Room__c testRoom = new Room__c(
         Name = 'test Room',
-        Hotel__c = testHotel.Id
+        MV_Hotel__c = testHotel.Id
        );
 
        insert testRoom;

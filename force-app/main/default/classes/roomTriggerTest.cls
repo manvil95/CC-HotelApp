@@ -4,7 +4,7 @@ public class roomTriggerTest {
 static testMethod void testUnit(){
 
 //Create hotel to test
-Hotel__c h = new hotel__c (
+MV_Hotel__c h = new MV_Hotel__c (
     Name = 'tst',
     MV_TXT_City__c = 'Nibylandia',
     MV_NUM_TotalRooms__c = 5);
@@ -14,7 +14,7 @@ insert h;
 Room__c r1 = new Room__c(
 Name = 'testRoom',
 Room_Number__c = 1,
-Hotel__c = h.Id
+MV_Hotel__c = h.Id
 );
 
 insert r1;
@@ -26,14 +26,14 @@ for(integer i = 0; i<160;i++){
 Room__c r = new Room__c(
 Name = 'test',
 Room_Number__c = 1,
-Hotel__c = h.Id
+MV_Hotel__c = h.Id
 );
 rUpdate.add(r);
 }
 Room__c r2 = new Room__c(
 Name = 'test',
 Room_Number__c = 0,
-Hotel__c = h.Id
+MV_Hotel__c = h.Id
 );
 rUpdate.add(r2);
 
@@ -52,7 +52,7 @@ try{
 Room__c rtest = new Room__c(
 Name = 'test',
 Room_Number__c = 200,
-Hotel__c = h.Id,
+MV_Hotel__c = h.Id,
 Available__c = true,
 occupied__c = true
 );

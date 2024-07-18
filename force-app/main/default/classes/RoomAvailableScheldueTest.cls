@@ -7,13 +7,13 @@ public class RoomAvailableScheldueTest {
     public static String CRON_EXP = '0 0 0 24 8 ? 2022';
     @isTest(SeeAllData=true) static void testScheduledJob() {
 
-        Hotel__c h1 = new Hotel__c(Name = 'Test Hotel', MV_TXT_City__c = 'Test City');
+        MV_Hotel__c h1 = new MV_Hotel__c(Name = 'Test Hotel', MV_TXT_City__c = 'Test City');
             insert h1;
 
-        Room__c r1 = new Room__c (Name='Test Room 1',Hotel__c = h1.Id,Available__c = true);
+        Room__c r1 = new Room__c (Name='Test Room 1',MV_Hotel__c = h1.Id,Available__c = true);
             insert r1;
 
-        Room__c r2 = new Room__c (Name='Test Room 2',Hotel__c = h1.Id, Room_Number__c = 5);
+        Room__c r2 = new Room__c (Name='Test Room 2',MV_Hotel__c = h1.Id, Room_Number__c = 5);
             insert r2;
 
         Contact c1 = new Contact(FirstName = 'Test',LastName='User',MV_PER_Discount__c=0);

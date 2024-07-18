@@ -4,7 +4,7 @@ public with sharing class hotelControllerTest {
     @TestSetup
     static void makeData(){
 
-        Hotel__c h1 = new Hotel__c(Name='Test Hotel',MV_TXT_City__c = 'Test City',MV_SEL_Country__c = 'Poland');
+        MV_Hotel__c h1 = new MV_Hotel__c(Name='Test Hotel',MV_TXT_City__c = 'Test City',MV_SEL_Country__c = 'Poland');
         insert h1;
 
     }

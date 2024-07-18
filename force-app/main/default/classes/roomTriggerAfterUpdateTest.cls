@@ -4,7 +4,7 @@ public class roomTriggerAfterUpdateTest {
     static testMethod void testUnit(){
 
 //Create hotel to test
-    Hotel__c h = new hotel__c (
+    MV_Hotel__c h = new MV_Hotel__c (
         Name = 'tst',
         MV_TXT_City__c = 'Nibylandia',
         MV_NUM_TotalRooms__c = 5,
@@ -12,7 +12,7 @@ public class roomTriggerAfterUpdateTest {
 
         insert h;
 
-    Hotel__c h2 = new hotel__c (
+    MV_Hotel__c h2 = new MV_Hotel__c (
         Name = 'tst2',
         MV_TXT_City__c = 'Nibylandia2',
         MV_NUM_TotalRooms__c = 5,
@@ -28,7 +28,7 @@ public class roomTriggerAfterUpdateTest {
         Room__c r = new Room__c(
             Name = 'test',
             Room_Number__c = i+1,
-            Hotel__c = h.Id,
+            MV_Hotel__c = h.Id,
             Available__c = TRUE
             );
 
@@ -37,7 +37,7 @@ public class roomTriggerAfterUpdateTest {
         Room__c r2 = new Room__c(
             Name = 'test',
             Room_Number__c = 161,
-            Hotel__c = h.Id,
+            MV_Hotel__c = h.Id,
             service__c = true
             );
 
@@ -46,7 +46,7 @@ public class roomTriggerAfterUpdateTest {
         Room__c r3 = new Room__c(
             Name = 'test',
             Room_Number__c = 162,
-            Hotel__c = h.Id,
+            MV_Hotel__c = h.Id,
             occupied__c = true
             );
 
@@ -58,7 +58,7 @@ test.startTest();
 
     insert rUpdate;
 
-    list<Room__c> UpdateList = [Select Id,Name,Room_Number__c,Hotel__c,service__c,occupied__c,Available__c FROM Room__c];
+    list<Room__c> UpdateList = [Select Id,Name,Room_Number__c,MV_Hotel__c,service__c,occupied__c,Available__c FROM Room__c];
     list<Room__c> updateListFinal = new list<Room__c>();
 
     for(Room__c r : UpdateList){
@@ -101,7 +101,7 @@ test.startTest();
 
 Test.stopTest();
 
-Hotel__c hotelData = [Select Id,MV_NUM_RoomsOutOfService__c,MV_FOR_RatingStars__c,MV_NUM_TotalRentedRooms__c from Hotel__c WHERE Name = 'tst'];
+MV_Hotel__c hotelData = [Select Id,MV_NUM_RoomsOutOfService__c,MV_FOR_RatingStars__c,MV_NUM_TotalRentedRooms__c from MV_Hotel__c WHERE Name = 'tst'];
 system.debug(hotelData);
 
 system.assertEquals(32,hotelData.MV_FOR_RatingStars__c);

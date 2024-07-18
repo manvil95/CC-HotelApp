@@ -5,11 +5,11 @@ public class roomMaintenance {
         String name;
         String url;}
 
-    public static void generateRooms(list<Hotel__c> hotelList){
+    public static void generateRooms(list<MV_Hotel__c> hotelList){
 
 
         //Prepare data
-        list<Hotel__c> queryList = [Select Id,Name from Hotel__c where Id IN: hotelList];
+        list<MV_Hotel__c> queryList = [Select Id,Name from MV_Hotel__c where Id IN: hotelList];
         //Create list to upload
         list<Room__c> uploadList = new list <Room__c>();
         //Available rooms
@@ -27,11 +27,11 @@ public class roomMaintenance {
        }
 
 
-    for(Hotel__c h:queryList){
+    for(MV_Hotel__c h:queryList){
         for(Integer i=1;i<=roomList.size();i++){
 
         Room__c ht = new Room__c(
-        Hotel__c = h.Id,
+        MV_Hotel__c = h.Id,
         Name = roomList[i-1].name + ' Room ' + h.Name,
         Type__c = roomList[i-1].name,
         Mini_Bar__c = true,
@@ -53,7 +53,7 @@ public class roomMaintenance {
 
 
         //Prepare data
-        list<Hotel__c> queryList = [Select Id,Name from Hotel__c where Id =: hotelId];
+        list<MV_Hotel__c> queryList = [Select Id,Name from MV_Hotel__c where Id =: hotelId];
         //Create list to upload
         list<Room__c> uploadList = new list <Room__c>();
         //Available rooms
@@ -71,11 +71,11 @@ public class roomMaintenance {
        }
 
 
-    for(Hotel__c h:queryList){
+    for(MV_Hotel__c h:queryList){
         for(Integer i=1;i<=roomList.size();i++){
 
         Room__c ht = new Room__c(
-        Hotel__c = h.Id,
+        MV_Hotel__c = h.Id,
         Name = roomList[i-1].name + ' Room ' + h.Name,
         Type__c = roomList[i-1].name,
         Mini_Bar__c = true,
@@ -93,19 +93,19 @@ public class roomMaintenance {
        insert uploadList;
     }
 
-    public static void updateHotelRoomsCount(List<Hotel__c> hotelList) {
+    public static void updateHotelRoomsCount(List<MV_Hotel__c> hotelList) {
 
-        AggregateResult[] aggRooms = [SELECT Hotel__c, count(Id) ct FROM Room__c WHERE Hotel__c IN:hotelList group by Hotel__c];
+        AggregateResult[] aggRooms = [SELECT MV_Hotel__c, count(Id) ct FROM Room__c WHERE MV_Hotel__c IN:hotelList group by MV_Hotel__c];
 
         map<String,Integer> hotelwithRoomCount = new map<String,Integer>();
-        list<Hotel__c> updateListHotels = new list<Hotel__c>();
+        list<MV_Hotel__c> updateListHotels = new list<MV_Hotel__c>();
 
         for(AggregateResult agg: aggRooms){
-        hotelwithRoomCount.put(String.valueOf(agg.get('Hotel__c')), Integer.valueOf(agg.get('ct')));
+        hotelwithRoomCount.put(String.valueOf(agg.get('MV_Hotel__c')), Integer.valueOf(agg.get('ct')));
         }
-        list<Hotel__c> hotelsList = [Select ID,(Select Id from Rooms__r) from Hotel__c WHERE id IN: hotelwithRoomCount.keySet()];
+        list<MV_Hotel__c> hotelsList = [Select ID,(Select Id from Rooms__r) from MV_Hotel__c WHERE id IN: hotelwithRoomCount.keySet()];
 
-        for(Hotel__c h : hotelsList){
+        for(MV_Hotel__c h : hotelsList){
 
             h.MV_NUM_TotalRooms__c = hotelwithRoomCount.get(h.Id);
             updateListHotels.add(h);
@@ -113,19 +113,19 @@ public class roomMaintenance {
         update updateListHotels;
     }
 
-    public static void updateRoomNumbers(List<Hotel__c> hotelList) {
-        AggregateResult[] aggRooms = [SELECT Hotel__c, count(Id) ct FROM Room__c WHERE Hotel__c IN:hotelList group by Hotel__c];
+    public static void updateRoomNumbers(List<MV_Hotel__c> hotelList) {
+        AggregateResult[] aggRooms = [SELECT MV_Hotel__c, count(Id) ct FROM Room__c WHERE MV_Hotel__c IN:hotelList group by MV_Hotel__c];
 
         map<String,Integer> hotelwithRoomCount = new map<String,Integer>();
         list<Room__c> updateListRoom = new list<Room__c>();
 
         for(AggregateResult agg: aggRooms){
-        hotelwithRoomCount.put(String.valueOf(agg.get('Hotel__c')), Integer.valueOf(agg.get('ct')));
+        hotelwithRoomCount.put(String.valueOf(agg.get('MV_Hotel__c')), Integer.valueOf(agg.get('ct')));
         }
 
-        list<Hotel__c> hotelsList = [Select ID,(Select Id from Rooms__r) from Hotel__c WHERE id IN: hotelwithRoomCount.keySet()];
+        list<MV_Hotel__c> hotelsList = [Select ID,(Select Id from Rooms__r) from MV_Hotel__c WHERE id IN: hotelwithRoomCount.keySet()];
 
-        for(Hotel__c h : hotelsList){
+        for(MV_Hotel__c h : hotelsList){
 
             Integer roomNum = 1;
             for(Room__c r :h.Rooms__r){

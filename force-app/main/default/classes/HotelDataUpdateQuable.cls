@@ -7,29 +7,29 @@ public class HotelDataUpdateQuable {
     map<Id,Integer> HotelAvialableCT = new map<id,Integer>();
     map<Id,Integer> HotelRentedleCT = new map<id,Integer>();
 
-    list<Hotel__c> HotelUpdateList = new list<Hotel__c>();
+    list<MV_Hotel__c> HotelUpdateList = new list<MV_Hotel__c>();
 
 
     //Prepare DATA
 
-    AggregateResult[] aggService = [SELECT Hotel__c , count(Id) ct from Room__c WHERE Hotel__c IN: recordIds  AND Service__c = TRUE GROUP BY Hotel__c];
+    AggregateResult[] aggService = [SELECT MV_Hotel__c , count(Id) ct from Room__c WHERE MV_Hotel__c IN: recordIds  AND Service__c = TRUE GROUP BY MV_Hotel__c];
 
-    AggregateResult[] aggAvailable = [SELECT Hotel__c , count(Id) ct from Room__c WHERE Hotel__c IN: recordIds  AND service__c != TRUE AND occupied__c != TRUE  GROUP BY Hotel__c];
+    AggregateResult[] aggAvailable = [SELECT MV_Hotel__c , count(Id) ct from Room__c WHERE MV_Hotel__c IN: recordIds  AND service__c != TRUE AND occupied__c != TRUE  GROUP BY MV_Hotel__c];
 
-    AggregateResult[] aggOccupied = [SELECT Hotel__c , count(Id) ct from Room__c WHERE Hotel__c IN: recordIds  AND occupied__c = TRUE  GROUP BY Hotel__c];
+    AggregateResult[] aggOccupied = [SELECT MV_Hotel__c , count(Id) ct from Room__c WHERE MV_Hotel__c IN: recordIds  AND occupied__c = TRUE  GROUP BY MV_Hotel__c];
 
 
     for(AggregateResult ar : aggService){
-        HotelServiceCT.put((Id)ar.get('Hotel__c'),(Integer)ar.get('ct'));
+        HotelServiceCT.put((Id)ar.get('MV_Hotel__c'),(Integer)ar.get('ct'));
     }
     for(AggregateResult arAvailable : aggAvailable){
-        HotelAvialableCT.put((Id)arAvailable.get('Hotel__c'),(Integer)arAvailable.get('ct'));
+        HotelAvialableCT.put((Id)arAvailable.get('MV_Hotel__c'),(Integer)arAvailable.get('ct'));
     }
      for(AggregateResult arOccupied : aggOccupied){
-        HotelRentedleCT.put((Id)arOccupied.get('Hotel__c'),(Integer)arOccupied.get('ct'));
+        HotelRentedleCT.put((Id)arOccupied.get('MV_Hotel__c'),(Integer)arOccupied.get('ct'));
     }
 
-    for(Hotel__c h: [SELECT Id,MV_NUM_RoomsOutOfService__c FROM Hotel__c WHERE Id In: recordIds]){
+    for(MV_Hotel__c h: [SELECT Id,MV_NUM_RoomsOutOfService__c FROM MV_Hotel__c WHERE Id In: recordIds]){
 
         if(aggService.size() == 0){
         h.MV_NUM_RoomsOutOfService__c = 0;

@@ -2,13 +2,13 @@ public class hotelController {
 
 
     public static void roomNumber() {
-    list<Hotel__c> hotels = [Select Id,Name,MV_FOR_RatingStars__c FROM Hotel__c];
-    Map<Id, Hotel__c> hotelMap = new Map<Id, Hotel__c>(hotels);
+    list<MV_Hotel__c> hotels = [Select Id,Name,MV_FOR_RatingStars__c FROM MV_Hotel__c];
+    Map<Id, MV_Hotel__c> hotelMap = new Map<Id, MV_Hotel__c>(hotels);
     }
 
     @AuraEnabled (cacheable = true)
     public static list<AggregateResult> countryList(){
-        return  [SELECT MV_SEL_Country__c FROM Hotel__c WHERE MV_SEL_Country__c <> NULL GROUP BY MV_SEL_Country__c];
+        return  [SELECT MV_SEL_Country__c FROM MV_Hotel__c WHERE MV_SEL_Country__c <> NULL GROUP BY MV_SEL_Country__c];
     }
 
        @AuraEnabled (cacheable = true)
@@ -18,11 +18,11 @@ public class hotelController {
 
         if(String.isEmpty(Country)){
 
-            return  [SELECT MV_TXT_City__c FROM Hotel__c WHERE MV_TXT_City__c <> NULL GROUP BY MV_TXT_City__c];
+            return  [SELECT MV_TXT_City__c FROM MV_Hotel__c WHERE MV_TXT_City__c <> NULL GROUP BY MV_TXT_City__c];
 
         } else {
 
-            return  [SELECT MV_TXT_City__c FROM Hotel__c WHERE MV_TXT_City__c <> NULL AND MV_SEL_Country__c =: Country GROUP BY MV_TXT_City__c];
+            return  [SELECT MV_TXT_City__c FROM MV_Hotel__c WHERE MV_TXT_City__c <> NULL AND MV_SEL_Country__c =: Country GROUP BY MV_TXT_City__c];
         }
 
 
@@ -49,22 +49,22 @@ public class hotelController {
         formula = ' WHERE ' + String.join(formulaKeys, ' AND ');
       }
 
-        String query = 'SELECT Id,Name FROM Hotel__c' + formula + ' LIMIT 10';
+        String query = 'SELECT Id,Name FROM MV_Hotel__c' + formula + ' LIMIT 10';
 
         return Database.query(query);
 
 }
     @AuraEnabled (cacheable = true)
-    public static list<Hotel__c> hotelListDropdown(){
+    public static list<MV_Hotel__c> hotelListDropdown(){
 
-        return [SELECT Id,Name,MV_DIV_TrailingYearACV__c,MV_NUM_TotalRooms__c,MV_NUM_TotalRentedRooms__c,MV_NUM_RoomsOutOfService__c,MV_FOR_RatingStars__c,MV_SEL_Rating__c,MV_FOR_RatingStars__c,MV_TXT_City__c,MV_SEL_Country__c from Hotel__c];
+        return [SELECT Id,Name,MV_DIV_TrailingYearACV__c,MV_NUM_TotalRooms__c,MV_NUM_TotalRentedRooms__c,MV_NUM_RoomsOutOfService__c,MV_FOR_RatingStars__c,MV_SEL_Rating__c,MV_FOR_RatingStars__c,MV_TXT_City__c,MV_SEL_Country__c from MV_Hotel__c];
 
 }
 
   @AuraEnabled (cacheable = true)
-    public static Hotel__c returnHotelData(String Hid){
+    public static MV_Hotel__c returnHotelData(String Hid){
 
-        return [SELECT Id,Name,MV_DIV_TrailingYearACV__c,MV_NUM_TotalRooms__c,MV_FOR_RatingStars__c,MV_NUM_TotalRentedRooms__c,MV_NUM_RoomsOutOfService__c,MV_FOR_RatingStars__c,MV_SEL_Rating__c,MV_TXT_City__c,MV_SEL_Country__c from Hotel__c WHERE Id =: Hid];
+        return [SELECT Id,Name,MV_DIV_TrailingYearACV__c,MV_NUM_TotalRooms__c,MV_FOR_RatingStars__c,MV_NUM_TotalRentedRooms__c,MV_NUM_RoomsOutOfService__c,MV_FOR_RatingStars__c,MV_SEL_Rating__c,MV_TXT_City__c,MV_SEL_Country__c from MV_Hotel__c WHERE Id =: Hid];
 
     }
 }

@@ -4,13 +4,13 @@ public with sharing class roomControllerTest {
     @TestSetup
     static void makeData(){
 
-    Hotel__c hotel = new Hotel__c(Name = 'Test Hotel',MV_SEL_Country__c = 'Poland',MV_TXT_City__c = 'Wroclaw');
+    MV_Hotel__c hotel = new MV_Hotel__c(Name = 'Test Hotel',MV_SEL_Country__c = 'Poland',MV_TXT_City__c = 'Wroclaw');
     insert hotel;
 
-    Room__c r1 = new Room__c(Name = 'Test Single Room 1', Hotel__c = hotel.Id,Max_Number_of_Guests__c = 5);
+    Room__c r1 = new Room__c(Name = 'Test Single Room 1', MV_Hotel__c = hotel.Id,Max_Number_of_Guests__c = 5);
     insert r1;
 
-    Room__c r2 = new Room__c(Name = 'Test Single Room 2', Hotel__c = hotel.Id,Max_Number_of_Guests__c = 5, Type__c = 'Double',Room_Number__c = 2);
+    Room__c r2 = new Room__c(Name = 'Test Single Room 2', MV_Hotel__c = hotel.Id,Max_Number_of_Guests__c = 5, Type__c = 'Double',Room_Number__c = 2);
     insert r2;
 
     }
@@ -46,7 +46,7 @@ public with sharing class roomControllerTest {
 
 
         //Test other return methods
-        List<Hotel__c> hList = [SELECT Id From Hotel__c];
+        List<MV_Hotel__c> hList = [SELECT Id From MV_Hotel__c];
 
 
        list<Room__c> roomList = roomController.roomList(hlist);

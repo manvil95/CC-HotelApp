@@ -124,30 +124,30 @@ public class roomController {
         return roomList;
     }
 
-    public static list<Room__c> roomList(list<Hotel__c> hlist){
+    public static list<Room__c> roomList(list<MV_Hotel__c> hlist){
 
-        list<Room__c> roomList = [Select Id,Name,Hotel__r.Name,Available__c,occupied__c,Mini_Bar__c,Jacuzzi__c,Air_Condition__c,Room_Number__c,Max_Number_of_Guests__c,Type__c,service__c from Room__c WHERE Hotel__c IN: hlist];
+        list<Room__c> roomList = [Select Id,Name,Hotel__r.Name,Available__c,occupied__c,Mini_Bar__c,Jacuzzi__c,Air_Condition__c,Room_Number__c,Max_Number_of_Guests__c,Type__c,service__c from Room__c WHERE MV_Hotel__c IN: hlist];
         return roomList;
     }
 
 
     @AuraEnabled(cacheable=true) public static list<Room__c> roomList(String h){
 
-        list<Room__c> roomList = [Select Id,Name,Hotel__r.Name,Available__c,occupied__c,Mini_Bar__c,Jacuzzi__c,Air_Condition__c,Room_Number__c,Max_Number_of_Guests__c,Type__c,service__c from Room__c WHERE Hotel__c =:h];
+        list<Room__c> roomList = [Select Id,Name,Hotel__r.Name,Available__c,occupied__c,Mini_Bar__c,Jacuzzi__c,Air_Condition__c,Room_Number__c,Max_Number_of_Guests__c,Type__c,service__c from Room__c WHERE MV_Hotel__c =:h];
 
         return roomList;
     }
 
-    public static list<Room__c> availableRooms(list<Hotel__c> hlist){
+    public static list<Room__c> availableRooms(list<MV_Hotel__c> hlist){
 
-        list<Room__c> availableRooms = [Select Id,Name,Available__c,Type__c,Room_Number__c from Room__c WHERE Hotel__c IN: hlist AND Available__c = true];
+        list<Room__c> availableRooms = [Select Id,Name,Available__c,Type__c,Room_Number__c from Room__c WHERE MV_Hotel__c IN: hlist AND Available__c = true];
 
         return availableRooms;
     }
 
-    public static list<Room__c> occupiedRooms(list<Hotel__c> hlist){
+    public static list<Room__c> occupiedRooms(list<MV_Hotel__c> hlist){
 
-        list<Room__c> occupiedRooms = [Select Id,Name,Available__c,Type__c,Room_Number__c from Room__c WHERE Hotel__c IN: hlist AND occupied__c = true];
+        list<Room__c> occupiedRooms = [Select Id,Name,Available__c,Type__c,Room_Number__c from Room__c WHERE MV_Hotel__c IN: hlist AND occupied__c = true];
         return occupiedRooms;
     }
 

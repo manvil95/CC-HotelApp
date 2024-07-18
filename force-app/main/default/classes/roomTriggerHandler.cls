@@ -11,12 +11,12 @@ public class roomTriggerHandler {
         set<Id> hotelIds = new set<Id>();
 
             for(room__c room : roomList){
-            hotelIds.add(room.Hotel__c);
+            hotelIds.add(room.MV_Hotel__c);
             }
 
         // Populate map with Hotel Ids and List of Rooms
-        For(Hotel__c hotel :[Select Id,MV_NUM_TotalRooms__c, (SELECT Room_Number__c from Rooms__r) FROM
-                   Hotel__c WHERE Id IN: hotelIds]){
+        For(MV_Hotel__c hotel :[Select Id,MV_NUM_TotalRooms__c, (SELECT Room_Number__c from Rooms__r) FROM
+                   MV_Hotel__c WHERE Id IN: hotelIds]){
 
         hotelWithRoom.put(hotel.Id,hotel.rooms__r);
         }
@@ -29,7 +29,7 @@ public class roomTriggerHandler {
             }
             else{
 
-            for(room__c dupCheck : hotelWithRoom.get(rc.Hotel__c)){
+            for(room__c dupCheck : hotelWithRoom.get(rc.MV_Hotel__c)){
 
                 if(rc.Room_Number__c == dupCheck.Room_Number__c){
 
@@ -61,19 +61,19 @@ public class roomTriggerHandler {
 
             if(r.service__c == true && oldMapValue.get(r.Id).service__c == false){
 
-                HotelToUpdate.add(r.Hotel__c);
+                HotelToUpdate.add(r.MV_Hotel__c);
             }
             else if(r.service__c == false && oldMapValue.get(r.Id).service__c == true){
 
-                HotelToUpdate.add(r.Hotel__c);
+                HotelToUpdate.add(r.MV_Hotel__c);
             }
             else if(r.occupied__c	== true &&  oldMapValue.get(r.Id).occupied__c == false){
 
-                HotelToUpdate.add(r.Hotel__c);
+                HotelToUpdate.add(r.MV_Hotel__c);
             }
             else if(r.occupied__c	== false &&  oldMapValue.get(r.Id).occupied__c == true){
 
-               HotelToUpdate.add(r.Hotel__c);
+               HotelToUpdate.add(r.MV_Hotel__c);
             }
 
         }
@@ -92,7 +92,7 @@ public class roomTriggerHandler {
 
         for(room__c r : updateRecord){
 
-                HotelToUpdate.add(r.Hotel__c);
+                HotelToUpdate.add(r.MV_Hotel__c);
 
         }
 
