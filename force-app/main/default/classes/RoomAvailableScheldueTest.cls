@@ -24,8 +24,6 @@ public class RoomAvailableScheldueTest {
         );
         insert c1;  
 
-
-
         list<Room__c> reservationTestbefore2 = [Select Id from  Room__c WHERE Available__c = true AND id =: r1.Id];
         System.assertEquals(1,reservationTestbefore2.size(),'This room is available');
 
