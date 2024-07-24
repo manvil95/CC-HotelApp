@@ -12,30 +12,29 @@
 
 ### Objects Refactor
 
-#### MV_Hotel__c
+#### MV_Hotel\_\_c
 
 ##### Fields
 
 - CreatedById
 - LastModifiedById
-- MV_DIV_TrailingYearACV__c
-- MV_FOR_RatingStars__c
-- MV_NUM_AvailableRooms__c
-- MV_NUM_RoomsOutOfService__c
-- MV_NUM_TotalRentedRooms__c
-- MV_NUM_TotalRooms__c
-- MV_SEL_Country__c
-- MV_SEL_Rating__c
-- MV_TXT_City__c
-- MV_TXT_PostalCode__c
-- MV_TXT_Street__c
+- MV_DIV_TrailingYearACV\_\_c
+- MV_FOR_RatingStars\_\_c
+- MV_NUM_AvailableRooms\_\_c
+- MV_NUM_RoomsOutOfService\_\_c
+- MV_NUM_TotalRentedRooms\_\_c
+- MV_NUM_TotalRooms\_\_c
+- MV_SEL_Country\_\_c
+- MV_SEL_Rating\_\_c
+- MV_TXT_City\_\_c
+- MV_TXT_PostalCode\_\_c
+- MV_TXT_Street\_\_c
 - Name
 - OwnerId
 
 ##### Page Layout
 
-- MV_Hotel__c-Hotel Layout
-
+- MV_Hotel\_\_c-Hotel Layout
 
 ### Picklist Value Set
 
@@ -51,22 +50,20 @@ CC Hotel App is build to manage reservation for for CC hotel company. It include
 ### Quick Start
 
 1. Open DevHub
-2. Create Scratch Org Using: 
-    - `sf org create scratch --target-dev-hub HotelDevHub --definition-file config/projectscratch-def.json --set-default --duration-days 30 --no-namespace --alias featHotel`
-3. Generate password: 
-    - `sf org generate password --target-org featHotel`
-    - To see the password for the user: 
-      - `sf org display user -o userName`
+2. Create Scratch Org Using:
+   - `sf org create scratch --target-dev-hub HotelDevHub --definition-file config/project-scratch-def.json --set-default --duration-days 30 --no-namespace --alias featHotel`
+3. Generate password:
+   - `sf org generate password --target-org featHotel`
+   - To see the password for the user:
+     - `sf org display user -o userName`
 4. Connect VSCode to org and push metadata:
-    - `sf project deploy start --ignore-conflicts | Out-File -FilePath output.txt`
-5. Assign Permission Set: 
-    - `sfdx force:user:permset:assign --permsetname Hotel_User -u featHotel`
-    - `sf org assign permset --perm-set-name Hotel_User -u featHotel`
-6. Import Data - Rooms and Hotels: 
-    - `sfdx force:data:import:tree -p ./data/Hotel__c-Room__c-plan.json -u featHotel`
-
-`sf org display user -o test-jg9evxegzomp@example.com`
+   - `sf project deploy start --ignore-conflicts | Out-File -FilePath output.txt`
+5. Assign Permission Set:
+   - `sfdx force:user:permset:assign --permsetname Hotel_User -u featHotel`
+   - `sf org assign permset --perm-set-name Hotel_User -u featHotel`
+6. Import Data - Rooms and Hotels: - `sfdx force:data:import:tree -p ./data/Hotel__c-Room__c-plan.json -u featHotel`
 <!--- Open DevHub
+
 - Create Scratch Org using `sfdx force:org:create -f project-scratch-def.json -a MyScratchOrg`
 - Push metadata `sfdx force:source:push -u MyScratchOrg -f`
 - Assign Permission Set `sfdx force:user:permset:assign --permsetname Hotel_User -u MyScratchOrg`
@@ -84,4 +81,5 @@ CC Hotel App is build to manage reservation for for CC hotel company. It include
 <div align="right">
 
 [Top](#refactor-hotel-app)
+
 </div>
