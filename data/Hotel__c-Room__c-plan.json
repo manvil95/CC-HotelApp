@@ -1,18 +1,14 @@
 [
-    {
-        "sobject": "MV_Hotel__c",
-        "saveRefs": true,
-        "resolveRefs": false,
-        "files": [
-            "Hotel__cs.json"
-        ]
-    },
-    {
-        "sobject": "Room__c",
-        "saveRefs": false,
-        "resolveRefs": true,
-        "files": [
-            "Room__cs.json"
-        ]
-    }
+  {
+    "sobject": "MV_Hotel__c",
+    "saveRefs": true,
+    "resolveRefs": false,
+    "files": ["Hotel__cs.json"]
+  },
+  {
+    "sobject": "MV_Room__c",
+    "saveRefs": false,
+    "resolveRefs": true,
+    "files": ["Room__cs.json"]
+  }
 ]
