@@ -1,176 +1,166 @@
-import { LightningElement, wire } from 'lwc';
-import { getRecord,getFieldValue } from 'lightning/uiRecordApi';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { NavigationMixin } from 'lightning/navigation';
+import { LightningElement, wire } from "lwc";
+import { getRecord, getFieldValue } from "lightning/uiRecordApi";
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
+import { NavigationMixin } from "lightning/navigation";
 
-import RESERVATION_OBJECT from '@salesforce/schema/Reservation__c';
-import RESERVATION_NAME from '@salesforce/schema/Reservation__c.Name';
-import RESERVATION_ROOM from '@salesforce/schema/Reservation__c.Room__c';
-import RESERVATION_CHECKIN from '@salesforce/schema/Reservation__c.Check_In_Date__c';
-import RESERVATION_CHECKOUT from '@salesforce/schema/Reservation__c.Check_out_Date__c';
-import RESERVATION_GUEST from '@salesforce/schema/Reservation__c.Guest_name__c';
-import RESERVATION_BREAKFAST from '@salesforce/schema/Reservation__c.Breakfast__c';
-import RESERVATION_BREAKFASTTYPE from '@salesforce/schema/Reservation__c.Breakfast_Type__c';
+import RESERVATION_OBJECT from "@salesforce/schema/Reservation__c";
+import RESERVATION_NAME from "@salesforce/schema/Reservation__c.Name";
+import RESERVATION_ROOM from "@salesforce/schema/Reservation__c.Room__c";
+import RESERVATION_CHECKIN from "@salesforce/schema/Reservation__c.Check_In_Date__c";
+import RESERVATION_CHECKOUT from "@salesforce/schema/Reservation__c.Check_out_Date__c";
+import RESERVATION_GUEST from "@salesforce/schema/Reservation__c.Guest_name__c";
+import RESERVATION_BREAKFAST from "@salesforce/schema/Reservation__c.Breakfast__c";
+import RESERVATION_BREAKFASTTYPE from "@salesforce/schema/Reservation__c.Breakfast_Type__c";
 
-import {subscribe,MessageContext} from 'lightning/messageService';
+import { subscribe, MessageContext } from "lightning/messageService";
 
-import SELECTED_ID from '@salesforce/messageChannel/roomId__c';
-import HOTEL_NAME from '@salesforce/schema/MV_Hotel__c.Name';
+import SELECTED_ID from "@salesforce/messageChannel/roomId__c";
+import HOTEL_NAME from "@salesforce/schema/MV_Hotel__c.Name";
 
 const FIELDS = [
-    'Room__c.Name',
-    'Room__c.Available__c',
-    'Room__c.MV_Hotel__c',
-    'Room__c.Mini_Bar__c',
-    'Room__c.photo_url__c',
-    'Room__c.Room_Number__c',
-    'Room__c.Type__c',
-    'Room__c.tv__c',
-    'Room__c.Max_Number_of_Guests__c'
+  "MV_Room__c.Name",
+  "MV_Room__c.MV_FLG_Available__c",
+  "MV_Room__c.MV_MDR_Hotel__c",
+  "MV_Room__c.MV_FLG_MiniBar__c",
+  "MV_Room__c.MV_URL_Photo__c",
+  "MV_Room__c.MV_NUM_RoomNumber__c",
+  "MV_Room__c.MV_SEL_Type__c",
+  "MV_Room__c.MV_NUM_MaxNumberGuests__c"
 ];
 
-export default class HotelAppHomeRoomDetails extends NavigationMixin(LightningElement) {
+export default class HotelAppHomeRoomDetails extends NavigationMixin(
+  LightningElement
+) {
+  reservation_Object = RESERVATION_OBJECT;
 
-    reservation_Object = RESERVATION_OBJECT;
+  //Reservation fields
+  reservationName = RESERVATION_NAME;
+  reservationRoom = RESERVATION_ROOM;
+  reservationCheckIn = RESERVATION_CHECKIN;
+  reservationCheckOut = RESERVATION_CHECKOUT;
+  reservationGuest = RESERVATION_GUEST;
+  reservationBreakfast = RESERVATION_BREAKFAST;
+  reservationBreakfastType = RESERVATION_BREAKFASTTYPE;
 
-    //Reservation fields
-    reservationName = RESERVATION_NAME;
-    reservationRoom = RESERVATION_ROOM;
-    reservationCheckIn = RESERVATION_CHECKIN;
-    reservationCheckOut = RESERVATION_CHECKOUT;
-    reservationGuest = RESERVATION_GUEST;
-    reservationBreakfast = RESERVATION_BREAKFAST;
-    reservationBreakfastType = RESERVATION_BREAKFASTTYPE;
+  showReservation = null;
 
+  recordId;
+  roomName;
+  MV_FLG_Available__c;
+  MV_FLG_MiniBar__c;
+  MV_URL_Photo__c;
+  MV_NUM_RoomNumber__c;
+  MV_SEL_Type__c;
+  hotel;
+  hotelName;
+  roomIdSubscription;
 
-    showReservation = null;
+  //Wire message context
+  @wire(MessageContext)
+  messageContext;
 
-    recordId;
-    roomName
-    Available__c
-    Mini_Bar__c
-    photo_url__c
-    Room_Number__c
-    Type__c
-    tv__c
-    hotel
-    hotelName
-    roomIdSubscription;
-
-        //Wire message context
-     @wire(MessageContext)
-     messageContext;
-
-
-    @wire(getRecord, { recordId: '$recordId', fields: FIELDS })
-    rooomData({ data, error }) {
-
-        if (data) {
-                this.roomName = data.fields.Name.value,
-                this.Available__c = data.fields.Available__c.value,
-                this.Mini_Bar__c = data.fields.Mini_Bar__c.value,
-                this.photo_url__c = data.fields.photo_url__c.value,
-                this.Room_Number__c = data.fields.Room_Number__c.value,
-                this.Type__c = data.fields.Type__c.value,
-                this.tv__c = data.fields.tv__c.value,
-                this.Max_Number_of_Guests__c = data.fields.Max_Number_of_Guests__c.value,
-                this.hotel = data.fields.MV_Hotel__c.value
-        }
-        if (error) {
-            console.error(error);
-        }
+  @wire(getRecord, { recordId: "$recordId", fields: FIELDS })
+  rooomData({ data, error }) {
+    if (data) {
+      (this.roomName = data.fields.Name.value),
+        (this.MV_FLG_Available__c = data.fields.MV_FLG_Available__c.value),
+        (this.MV_FLG_MiniBar__c = data.fields.MV_FLG_MiniBar__c.value),
+        (this.MV_URL_Photo__c = data.fields.MV_URL_Photo__c.value),
+        (this.MV_NUM_RoomNumber__c = data.fields.MV_NUM_RoomNumber__c.value),
+        (this.MV_SEL_Type__c = data.fields.MV_SEL_Type__c.value),
+        (this.MV_NUM_MaxNumberGuests__c =
+          data.fields.MV_NUM_MaxNumberGuests__c.value),
+        (this.hotel = data.fields.MV_MDR_Hotel__c.value);
     }
-
-     @wire(getRecord, { recordId: '$hotel', fields: HOTEL_NAME })
-     hotelData({data,error}){
-         if(data){
-            this.hotelName = data.fields.Name.value;
-         }
-         if(error){
-             console.error(error)
-         }
-     }
-
-
-    openRecord(){
-        this.navigateToRecordPage();
+    if (error) {
+      console.error(error);
     }
+  }
 
-     navigateToRecordPage() {
-        // Navigate to the Record page
-        this[NavigationMixin.Navigate]({
-            type: 'standard__recordPage',
-            attributes: {
-                recordId: this.recordId,
-                objectApiName: 'Room__c',
-                actionName: 'view',
-            },
-        });
+  @wire(getRecord, { recordId: "$hotel", fields: HOTEL_NAME })
+  hotelData({ data, error }) {
+    if (data) {
+      this.hotelName = data.fields.Name.value;
     }
-
-
-     // Encapsulate logic for Lightning message service subscribe and unsubsubscribe
-  subscribeHandler(){
-       this.roomIdSubscription =  subscribe(this.messageContext,SELECTED_ID,(message)=>this.handleSelectedId(message))
+    if (error) {
+      console.error(error);
     }
+  }
 
+  openRecord() {
+    this.navigateToRecordPage();
+  }
 
-    // Handler for message received by component
-    handleSelectedId(message){
-        this.recordId = message.roomId;
-    }
+  navigateToRecordPage() {
+    // Navigate to the Record page
+    this[NavigationMixin.Navigate]({
+      type: "standard__recordPage",
+      attributes: {
+        recordId: this.recordId,
+        objectApiName: "MV_Room__c",
+        actionName: "view"
+      }
+    });
+  }
 
-    connectedCallback() {
-        this.subscribeHandler();
-    }
+  // Encapsulate logic for Lightning message service subscribe and unsubsubscribe
+  subscribeHandler() {
+    this.roomIdSubscription = subscribe(
+      this.messageContext,
+      SELECTED_ID,
+      (message) => this.handleSelectedId(message)
+    );
+  }
 
+  // Handler for message received by component
+  handleSelectedId(message) {
+    this.recordId = message.roomId;
+  }
 
-    //Reset Record Form
-    handleReset(event) {
+  connectedCallback() {
+    this.subscribeHandler();
+  }
 
+  //Reset Record Form
+  handleReset(event) {
     // hide form component
     this.showReservation = null;
 
-   const inputFields = this.template.querySelectorAll(
-       'lightning-input-field'
-   );
-   if (inputFields) {
-       inputFields.forEach(field => {
-           field.reset();
-       });
-   }
-}
+    const inputFields = this.template.querySelectorAll("lightning-input-field");
+    if (inputFields) {
+      inputFields.forEach((field) => {
+        field.reset();
+      });
+    }
+  }
 
-showReservationForm(){
+  showReservationForm() {
     this.showReservation = 1;
-}
+  }
 
-handleSuccess(event){
-
+  handleSuccess(event) {
     this.showReservation = null;
-    console.log('new record created ' + event.detail.id)
+    console.log("new record created " + event.detail.id);
     const newrecord = event.detail.id;
     this.showToast(newrecord);
+  }
 
-}
-
-showToast(newrecord) {
-        const event = new ShowToastEvent({
-            title: 'Success!',
-            variant:'success',
-            message:'New Reservation Created! See it {1}.',
-                messageData: [
-                'Record',
-                {
-                    url:'https://cunning-unicorn-mla094-dev-ed.lightning.force.com/lightning/r/Reservation__c/' + newrecord + '/view',
-                    label:'here'
-
-                },
-                ],
-        });
-        this.dispatchEvent(event);
-    }
-
-
-
+  showToast(newrecord) {
+    const event = new ShowToastEvent({
+      title: "Success!",
+      variant: "success",
+      message: "New Reservation Created! See it {1}.",
+      messageData: [
+        "Record",
+        {
+          url:
+            "https://cunning-unicorn-mla094-dev-ed.lightning.force.com/lightning/r/Reservation__c/" +
+            newrecord +
+            "/view",
+          label: "here"
+        }
+      ]
+    });
+    this.dispatchEvent(event);
+  }
 }
