@@ -10,19 +10,19 @@ public class roomTriggerAfterUpdateTest {
 
         insert h2;
 
-        list<Room__c> rUpdate = new List<Room__c>();
+        list<MV_Room__c> rUpdate = new List<MV_Room__c>();
 
         // create 160 rooms test
         for (integer i = 0; i < 160; i++) {
-            Room__c r = new Room__c(Name = 'test', Room_Number__c = i + 1, MV_Hotel__c = h.Id, Available__c = true);
+            MV_Room__c r = new MV_Room__c(Name = 'test', MV_NUM_RoomNumber__c = i + 1, MV_Hotel__c = h.Id, MV_FLG_Available__c = true);
 
             rUpdate.add(r);
         }
-        Room__c r2 = new Room__c(Name = 'test', Room_Number__c = 161, MV_Hotel__c = h.Id, service__c = true);
+        MV_Room__c r2 = new MV_Room__c(Name = 'test', MV_NUM_RoomNumber__c = 161, MV_Hotel__c = h.Id, MV_FLG_ServiceRequired__c = true);
 
         rUpdate.add(r2);
 
-        Room__c r3 = new Room__c(Name = 'test', Room_Number__c = 162, MV_Hotel__c = h.Id, occupied__c = true);
+        MV_Room__c r3 = new MV_Room__c(Name = 'test', MV_NUM_RoomNumber__c = 162, MV_Hotel__c = h.Id, MV_FLG_Occupied__c = true);
 
         rUpdate.add(r3);
 
@@ -31,31 +31,31 @@ public class roomTriggerAfterUpdateTest {
 
         insert rUpdate;
 
-        list<Room__c> UpdateList = [SELECT Id, Name, Room_Number__c, MV_Hotel__c, service__c, occupied__c, Available__c FROM Room__c];
-        list<Room__c> updateListFinal = new List<Room__c>();
+        list<MV_Room__c> UpdateList = [SELECT Id, Name, MV_NUM_RoomNumber__c, MV_Hotel__c, MV_FLG_ServiceRequired__c, MV_FLG_Occupied__c, MV_FLG_Available__c FROM MV_Room__c];
+        list<MV_Room__c> updateListFinal = new List<MV_Room__c>();
 
-        for (Room__c r : UpdateList) {
-            if (r.Room_Number__c <= 50) {
-                r.service__c = true;
-                r.Available__c = false;
+        for (MV_Room__c r : UpdateList) {
+            if (r.MV_NUM_RoomNumber__c <= 50) {
+                r.MV_FLG_ServiceRequired__c = true;
+                r.MV_FLG_Available__c = false;
                 updateListFinal.add(r);
-            } else if (r.Room_Number__c > 50 && r.Room_Number__c <= 80) {
-                r.Available__c = true;
-                r.occupied__c = false;
+            } else if (r.MV_NUM_RoomNumber__c > 50 && r.MV_NUM_RoomNumber__c <= 80) {
+                r.MV_FLG_Available__c = true;
+                r.MV_FLG_Occupied__c = false;
                 updateListFinal.add(r);
-            } else if (r.Room_Number__c == 161) {
-                r.Available__c = true;
-                r.occupied__c = false;
-                r.service__c = false;
+            } else if (r.MV_NUM_RoomNumber__c == 161) {
+                r.MV_FLG_Available__c = true;
+                r.MV_FLG_Occupied__c = false;
+                r.MV_FLG_ServiceRequired__c = false;
                 updateListFinal.add(r);
-            } else if (r.Room_Number__c == 162) {
-                r.Available__c = true;
-                r.occupied__c = false;
-                r.service__c = false;
+            } else if (r.MV_NUM_RoomNumber__c == 162) {
+                r.MV_FLG_Available__c = true;
+                r.MV_FLG_Occupied__c = false;
+                r.MV_FLG_ServiceRequired__c = false;
                 updateListFinal.add(r);
             } else {
-                r.Available__c = false;
-                r.occupied__c = true;
+                r.MV_FLG_Available__c = false;
+                r.MV_FLG_Occupied__c = true;
                 updateListFinal.add(r);
             }
         }

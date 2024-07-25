@@ -24,17 +24,17 @@ public class ReservationTriggerHandler {
     public static void afterInsertUpdateRoomAvailability(List<Reservation__c> reservations) {
         // Store all rooms from New reservations list
         set<Id> roomList = new Set<Id>();
-        list<Room__c> updateListRoom = new List<Room__c>();
+        list<MV_Room__c> updateListRoom = new List<MV_Room__c>();
 
         for (Reservation__c rl : reservations) {
             if (rl.Check_In_Date__c <= date.today() && rl.Check_out_Date__c >= date.today()) {
-                roomList.add(rl.Room__c);
+                roomList.add(rl.MV_Room__c);
             }
         }
 
-        for (Room__c r : [SELECT Id, Name FROM Room__c WHERE Id IN :roomList]) {
-            r.Available__c = false;
-            r.occupied__c = true;
+        for (MV_Room__c r : [SELECT Id, Name FROM MV_Room__c WHERE Id IN :roomList]) {
+            r.MV_FLG_Available__c = false;
+            r.MV_FLG_Occupied__c = true;
 
             updateListRoom.add(r);
         }
@@ -46,7 +46,7 @@ public class ReservationTriggerHandler {
     public static void createReservationItem(List<Reservation__c> reservations) {
         List<Reservation_line_item__c> newReservations = new List<Reservation_line_item__c>();
 
-        list<Reservation__c> reservationQuery = [SELECT Id, Name, Guest_name__r.Name, Room__c, Guest_name__r.Discount__c FROM Reservation__c WHERE Id IN :reservations];
+        list<Reservation__c> reservationQuery = [SELECT Id, Name, Guest_name__r.Name, MV_Room__c, Guest_name__r.Discount__c FROM Reservation__c WHERE Id IN :reservations];
 
         map<Id, Reservation__c> reservationMap = new Map<Id, Reservation__c>(reservationQuery);
 
@@ -55,7 +55,7 @@ public class ReservationTriggerHandler {
                 Name = r.Name + ' - ' + r.Days_number__c + ' stay. ' + reservationMap.get(r.Id).Guest_name__r.Name,
                 Product__c = reservationLinePicker.reservationLineProduct().reservationItem().Product2Id,
                 Reservation__c = r.Id,
-                Room__c = r.Room__c,
+                MV_Room__c = r.MV_Room__c,
                 Quantity__c = r.Days_number__c,
                 Discount__c = reservationMap.get(r.Id).Guest_name__r.MV_PER_Discount__c,
                 List_Price__c = reservationLinePicker.reservationLineProduct().reservationItem().UnitPrice * r.Days_number__c,
@@ -68,7 +68,7 @@ public class ReservationTriggerHandler {
                     Name = r.Name + ' - ' + reservationLinePicker.reservationLineProduct(r.Breakfast_Type__c).reservationItem().Name + ' Meal. ' + reservationMap.get(r.Id).Guest_name__r.Name,
                     Product__c = reservationLinePicker.reservationLineProduct(r.Breakfast_Type__c).reservationItem().Product2Id,
                     Reservation__c = r.Id,
-                    Room__c = r.Room__c,
+                    MV_Room__c = r.MV_Room__c,
                     Quantity__c = r.Days_number__c,
                     Discount__c = reservationMap.get(r.Id).Guest_name__r.MV_PER_Discount__c,
                     List_Price__c = reservationLinePicker.reservationLineProduct(r.Breakfast_Type__c).reservationItem().UnitPrice * r.Days_number__c,
@@ -86,14 +86,14 @@ public class ReservationTriggerHandler {
         List<Id> roomList = new List<Id>();
 
         for (Reservation__c rl : reservations) {
-            roomList.add(rl.Room__c);
+            roomList.add(rl.MV_Room__c);
         }
 
         map<Id, list<Reservation__c>> roomReservations = new Map<Id, list<Reservation__c>>();
 
-        list<Room__c> roomWithReservations = [SELECT Id, Name, (SELECT Id, Name, Check_In_Date__c, Check_out_Date__c, Room__c FROM Reservations__r) FROM Room__c WHERE Id IN :roomList];
+        list<MV_Room__c> roomWithReservations = [SELECT Id, Name, (SELECT Id, Name, Check_In_Date__c, Check_out_Date__c, MV_Room__c FROM Reservations__r) FROM MV_Room__c WHERE Id IN :roomList];
 
-        for (Room__c r : roomWithReservations) {
+        for (MV_Room__c r : roomWithReservations) {
             roomReservations.put(r.Id, r.Reservations__r);
         }
 
@@ -101,7 +101,7 @@ public class ReservationTriggerHandler {
         set<Reservation__c> dupes = new Set<Reservation__c>();
 
         for (Reservation__c res : reservations) {
-            for (Reservation__c checkDupe : roomReservations.get(res.Room__c)) {
+            for (Reservation__c checkDupe : roomReservations.get(res.MV_Room__c)) {
                 if (
                     // Resrvation overlaping and reservation after old created date
                     (res.Check_In_Date__c <= checkDupe.Check_In_Date__c &&

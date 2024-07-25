@@ -9,11 +9,11 @@ public class HotelDataUpdateQuable {
 
         //Prepare DATA
 
-        AggregateResult[] aggService = [SELECT MV_Hotel__c, count(Id) ct FROM Room__c WHERE MV_Hotel__c IN :recordIds AND Service__c = TRUE GROUP BY MV_Hotel__c];
+        AggregateResult[] aggService = [SELECT MV_Hotel__c, count(Id) ct FROM MV_Room__c WHERE MV_Hotel__c IN :recordIds AND MV_FLG_ServiceRequired__c = TRUE GROUP BY MV_Hotel__c];
 
-        AggregateResult[] aggAvailable = [SELECT MV_Hotel__c, count(Id) ct FROM Room__c WHERE MV_Hotel__c IN :recordIds AND service__c != TRUE AND occupied__c != TRUE GROUP BY MV_Hotel__c];
+        AggregateResult[] aggAvailable = [SELECT MV_Hotel__c, count(Id) ct FROM MV_Room__c WHERE MV_Hotel__c IN :recordIds AND MV_FLG_ServiceRequired__c != TRUE AND MV_FLG_Occupied__c != TRUE GROUP BY MV_Hotel__c];
 
-        AggregateResult[] aggOccupied = [SELECT MV_Hotel__c, count(Id) ct FROM Room__c WHERE MV_Hotel__c IN :recordIds AND occupied__c = TRUE GROUP BY MV_Hotel__c];
+        AggregateResult[] aggOccupied = [SELECT MV_Hotel__c, count(Id) ct FROM MV_Room__c WHERE MV_Hotel__c IN :recordIds AND MV_FLG_Occupied__c = TRUE GROUP BY MV_Hotel__c];
 
         for (AggregateResult ar : aggService) {
             HotelServiceCT.put((Id) ar.get('MV_Hotel__c'), (Integer) ar.get('ct'));

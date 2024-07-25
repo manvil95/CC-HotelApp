@@ -13,14 +13,14 @@ public class ReservationTriggerTest {
 
         insert testHotel;
 
-        Room__c testRoom = new Room__c(Name = 'test Room', MV_Hotel__c = testHotel.Id);
+        MV_Room__c testRoom = new MV_Room__c(Name = 'test Room', MV_Hotel__c = testHotel.Id);
 
         insert testRoom;
 
         Reservation__c rr = new Reservation__c(
             Name = 'Reservation TestSetup',
             Guest_name__c = testContact.Id,
-            Room__c = testRoom.Id,
+            MV_Room__c = testRoom.Id,
             Check_In_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day()),
             Check_out_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day()),
             Cancelation_fee_covered__c = false
@@ -38,7 +38,7 @@ public class ReservationTriggerTest {
             Reservation__c r = new Reservation__c(
                 Name = 'Reservation ' + i,
                 Guest_name__c = guest.Id,
-                Room__c = testRoom.Id,
+                MV_Room__c = testRoom.Id,
                 Check_In_Date__c = i > 1 ? date.newInstance(Date.today().year(), Date.today().month(), date.today().day()) : date.newInstance(Date.today().year(), Date.today().month(), date.today().day() + 2),
                 Check_out_Date__c = i > 1 ? date.newInstance(Date.today().year(), Date.today().month(), date.today().day() + 1) : date.newInstance(Date.today().year(), Date.today().month(), date.today().day() + 4)
             );
@@ -56,14 +56,14 @@ public class ReservationTriggerTest {
             system.assertEquals(expectedExceptionThrown, true);
         }
 
-        list<Reservation__c> testReservations = [SELECT Id, Name, Check_In_Date__c, Check_out_Date__c, Room__c FROM Reservation__c WHERE Room__c = :testRoom.Id];
+        list<Reservation__c> testReservations = [SELECT Id, Name, Check_In_Date__c, Check_out_Date__c, MV_Room__c FROM Reservation__c WHERE MV_Room__c = :testRoom.Id];
 
         //  System.assertEquals(2, testReservations.size());
 
         Reservation__c r1 = new Reservation__c(
             Name = 'Reservation  test f',
             Guest_name__c = guest.Id,
-            Room__c = testRoom.Id,
+            MV_Room__c = testRoom.Id,
             Check_In_Date__c = date.newInstance(Date.today().year(), Date.today().month() + 1, date.today().day()),
             Check_out_Date__c = date.newInstance(Date.today().year(), Date.today().month() + 1, date.today().day() + 2)
         );
@@ -76,12 +76,12 @@ public class ReservationTriggerTest {
             system.debug(f.getMessage());
         }
 
-        list<Reservation__c> rtest = [SELECT id, Name, Check_In_Date__c, Check_out_Date__c FROM Reservation__c WHERE Room__c = :testRoom.Id];
-        room__c roomTest = [SELECT id, Available__c, occupied__c FROM Room__c WHERE id = :testRoom.Id];
+        list<Reservation__c> rtest = [SELECT id, Name, Check_In_Date__c, Check_out_Date__c FROM Reservation__c WHERE MV_Room__c = :testRoom.Id];
+        MV_Room__c roomTest = [SELECT id, MV_FLG_Available__c, MV_FLG_Occupied__c FROM MV_Room__c WHERE id = :testRoom.Id];
 
         system.debug(rtest);
         system.assertEquals(2, rtest.size());
-        system.assertEquals(roomTest.occupied__c, true);
+        system.assertEquals(roomTest.MV_FLG_Occupied__c, true);
 
         // test delete reservation
 
@@ -98,7 +98,7 @@ public class ReservationTriggerTest {
         Reservation__c r1delete = new Reservation__c(
             Name = 'Reservation  test f',
             Guest_name__c = guest.Id,
-            Room__c = testRoom.Id,
+            MV_Room__c = testRoom.Id,
             Check_In_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day() + 5),
             Check_out_Date__c = date.newInstance(Date.today().year(), Date.today().month(), date.today().day() + 9),
             Cancelation_fee_covered__c = false,
