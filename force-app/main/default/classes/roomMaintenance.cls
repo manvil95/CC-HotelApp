@@ -8,7 +8,7 @@ public class roomMaintenance {
         //Prepare data
         list<MV_Hotel__c> queryList = [SELECT Id, Name FROM MV_Hotel__c WHERE Id IN :hotelList];
         //Create list to upload
-        list<Room__c> uploadList = new List<Room__c>();
+        list<MV_Room__c> uploadList = new List<MV_Room__c>();
         //Available rooms
 
         list<String> roomTypes = new List<String>{ 'Single', 'Double', 'King', 'President Suite' };
@@ -24,18 +24,17 @@ public class roomMaintenance {
 
         for (MV_Hotel__c h : queryList) {
             for (Integer i = 1; i <= roomList.size(); i++) {
-                Room__c ht = new Room__c(
+                MV_Room__c ht = new MV_Room__c(
                     MV_Hotel__c = h.Id,
                     Name = roomList[i - 1].name + ' Room ' + h.Name,
-                    Type__c = roomList[i - 1].name,
-                    Mini_Bar__c = true,
-                    Available__c = true,
-                    Air_Condition__c = true,
-                    tv__c = true,
-                    Room_Number__c = i,
-                    jacuzzi__c = roomList[i - 1].name == 'President Suite' ? true : false,
-                    photo_url__c = roomList[i - 1].url,
-                    Max_Number_of_Guests__c = roomList[i - 1].name == 'President Suite' ? 5 : roomList[i - 1].name == 'King' ? 4 : roomList[i - 1].name == 'Double' ? 2 : 1
+                    MV_SEL_Type__c = roomList[i - 1].name,
+                    MV_FLG_MiniBar__c = true,
+                    MV_FLG_Available__c = true,
+                    MV_FLG_AirCondition__c = true,
+                    MV_NUM_RoomNumber__c = i,
+                    MV_FLG_Jacuzzi__c = roomList[i - 1].name == 'President Suite' ? true : false,
+                    MV_URL_Photo__c = roomList[i - 1].url,
+                    MV_NUM_MaxNumberGuests__c = roomList[i - 1].name == 'President Suite' ? 5 : roomList[i - 1].name == 'King' ? 4 : roomList[i - 1].name == 'Double' ? 2 : 1
                 );
                 uploadList.add(ht);
             }
@@ -47,7 +46,7 @@ public class roomMaintenance {
         //Prepare data
         list<MV_Hotel__c> queryList = [SELECT Id, Name FROM MV_Hotel__c WHERE Id = :hotelId];
         //Create list to upload
-        list<Room__c> uploadList = new List<Room__c>();
+        list<MV_Room__c> uploadList = new List<MV_Room__c>();
         //Available rooms
 
         list<String> roomTypes = new List<String>{ 'Single', 'Double', 'King', 'President Suite' };
@@ -63,18 +62,17 @@ public class roomMaintenance {
 
         for (MV_Hotel__c h : queryList) {
             for (Integer i = 1; i <= roomList.size(); i++) {
-                Room__c ht = new Room__c(
+                MV_Room__c ht = new MV_Room__c(
                     MV_Hotel__c = h.Id,
                     Name = roomList[i - 1].name + ' Room ' + h.Name,
-                    Type__c = roomList[i - 1].name,
-                    Mini_Bar__c = true,
-                    Available__c = true,
-                    Air_Condition__c = true,
-                    tv__c = true,
-                    Room_Number__c = i,
-                    jacuzzi__c = roomList[i - 1].name == 'President Suite' ? true : false,
-                    photo_url__c = roomList[i - 1].url,
-                    Max_Number_of_Guests__c = roomList[i - 1].name == 'President Suite' ? 5 : roomList[i - 1].name == 'King' ? 4 : roomList[i - 1].name == 'Double' ? 2 : 1
+                    MV_SEL_Type__c = roomList[i - 1].name,
+                    MV_FLG_MiniBar__c = true,
+                    MV_FLG_Available__c = true,
+                    MV_FLG_AirCondition__c = true,
+                    MV_NUM_RoomNumber__c = i,
+                    MV_FLG_Jacuzzi__c = roomList[i - 1].name == 'President Suite' ? true : false,
+                    MV_URL_Photo__c = roomList[i - 1].url,
+                    MV_NUM_MaxNumberGuests__c = roomList[i - 1].name == 'President Suite' ? 5 : roomList[i - 1].name == 'King' ? 4 : roomList[i - 1].name == 'Double' ? 2 : 1
                 );
                 uploadList.add(ht);
             }
@@ -83,7 +81,7 @@ public class roomMaintenance {
     }
 
     public static void updateHotelRoomsCount(List<MV_Hotel__c> hotelList) {
-        AggregateResult[] aggRooms = [SELECT MV_Hotel__c, count(Id) ct FROM Room__c WHERE MV_Hotel__c IN :hotelList GROUP BY MV_Hotel__c];
+        AggregateResult[] aggRooms = [SELECT MV_Hotel__c, count(Id) ct FROM MV_Room__c WHERE MV_Hotel__c IN :hotelList GROUP BY MV_Hotel__c];
 
         map<String, Integer> hotelwithRoomCount = new Map<String, Integer>();
         list<MV_Hotel__c> updateListHotels = new List<MV_Hotel__c>();
@@ -101,10 +99,10 @@ public class roomMaintenance {
     }
 
     public static void updateRoomNumbers(List<MV_Hotel__c> hotelList) {
-        AggregateResult[] aggRooms = [SELECT MV_Hotel__c, count(Id) ct FROM Room__c WHERE MV_Hotel__c IN :hotelList GROUP BY MV_Hotel__c];
+        AggregateResult[] aggRooms = [SELECT MV_Hotel__c, count(Id) ct FROM MV_Room__c WHERE MV_Hotel__c IN :hotelList GROUP BY MV_Hotel__c];
 
         map<String, Integer> hotelwithRoomCount = new Map<String, Integer>();
-        list<Room__c> updateListRoom = new List<Room__c>();
+        list<MV_Room__c> updateListRoom = new List<MV_Room__c>();
 
         for (AggregateResult agg : aggRooms) {
             hotelwithRoomCount.put(String.valueOf(agg.get('MV_Hotel__c')), Integer.valueOf(agg.get('ct')));
@@ -114,8 +112,8 @@ public class roomMaintenance {
 
         for (MV_Hotel__c h : hotelsList) {
             Integer roomNum = 1;
-            for (Room__c r : h.Rooms__r) {
-                r.Room_Number__c = roomNum;
+            for (MV_Room__c r : h.Rooms__r) {
+                r.MV_NUM_RoomNumber__c = roomNum;
                 updateListRoom.add(r);
                 roomNum++;
             }

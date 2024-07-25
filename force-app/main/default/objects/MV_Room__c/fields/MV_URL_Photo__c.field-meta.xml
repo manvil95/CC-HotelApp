@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Max_Number_of_Guests__c</fullName>
-    <externalId>false</externalId>
-    <label>Max Number of Guests</label>
-    <precision>18</precision>
+    <fullName>MV_URL_Photo__c</fullName>
+    <description>Field to show the photo of the room.</description>
+    <label>Photo</label>
     <required>false</required>
-    <scale>0</scale>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Number</type>
-    <unique>false</unique>
+    <type>Url</type>
 </CustomField>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Room_Number__c</fullName>
+    <fullName>MV_NUM_MaxNumberGuests__c</fullName>
+    <description>Field to indicate the maximum number of guests in this room.</description>
     <externalId>false</externalId>
-    <label>Room Number</label>
+    <label>Max Number of Guests</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>

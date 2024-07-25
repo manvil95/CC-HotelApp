@@ -1,125 +1,117 @@
-import { LightningElement,wire } from 'lwc';
-import roomList from '@salesforce/apex/roomController.roomList';
-import recordSelected from '@salesforce/messageChannel/hotelId__c';
+import { LightningElement, wire } from "lwc";
+import roomList from "@salesforce/apex/roomController.roomList";
+import recordSelected from "@salesforce/messageChannel/hotelId__c";
 
 import {
-    subscribe,
-    APPLICATION_SCOPE,
-    MessageContext
-} from 'lightning/messageService';
+  subscribe,
+  APPLICATION_SCOPE,
+  MessageContext
+} from "lightning/messageService";
 
 const dataColumns = [
-    {label:'Room Number',fieldName:'Room_Number__c'},
-    {label:'Id',fieldName:'Id'},
-    {label:'Name',fieldName:'Name'},
-    {label:'Type',fieldName:'Type__c'},
-    {label:'Max Number of Guests',fieldName:'Max_Number_of_Guests__c'},
-    {label:'Available',fieldName:'Available__c'},
-    {label:'Jacuzzi',fieldName:'Jacuzzi__c'}
-
+  { label: "Room Number", fieldName: "MV_NUM_RoomNumber__c" },
+  { label: "Id", fieldName: "Id" },
+  { label: "Name", fieldName: "Name" },
+  { label: "Type", fieldName: "MV_SEL_Type__c" },
+  { label: "Max Number of Guests", fieldName: "MV_NUM_MaxNumberGuests__c" },
+  { label: "Available", fieldName: "MV_FLG_Available__c" },
+  { label: "Jacuzzi", fieldName: "MV_FLG_Jacuzzi__c" }
 ];
 export default class HotelThreeSixtyRoomList extends LightningElement {
+  subscription = null;
+  roomList;
+  roomListSize = 0;
+  dataColumns = dataColumns;
+  hotelValue;
+  recordId;
+  roomShow;
+  selectedRooms = [];
+  reservationIds = [];
 
-    subscription = null;
-    roomList;
-    roomListSize = 0;
-    dataColumns = dataColumns;
-    hotelValue;
-    recordId;
-    roomShow;
-    selectedRooms = [];
-    reservationIds = [];
+  @wire(MessageContext)
+  messageContext;
 
-    @wire(MessageContext)
-    messageContext;
+  // Encapsulate logic for Lightning message service subscribe and unsubsubscribe
+  subscribeToMessageChannel() {
+    if (!this.subscription) {
+      this.subscription = subscribe(
+        this.messageContext,
+        recordSelected,
+        (message) => this.handleMessage(message),
+        { scope: APPLICATION_SCOPE }
+      );
+    }
+  }
 
-      // Encapsulate logic for Lightning message service subscribe and unsubsubscribe
-   subscribeToMessageChannel() {
-        if (!this.subscription) {
-            this.subscription = subscribe(
-                this.messageContext,
-                recordSelected,
-                (message) => this.handleMessage(message),
-                { scope: APPLICATION_SCOPE }
-            );
-        }
+  //  Handler for message received by component
+  handleMessage(message) {
+    this.hotelValue = message.hotelId;
+    this.getRoomList();
+  }
+
+  getRoomList() {
+    roomList({ h: this.hotelValue })
+      .then((result) => {
+        this.roomList = result;
+        this.roomListSize = Object.keys(this.roomList).length;
+        this.roomShow = this.roomListSize > 0 ? true : false;
+
+        this.fetchDefaultReservationsTable(result);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  fetchDefaultReservationsTable(data) {
+    const roomIds = [];
+
+    for (let i = 0; i < data.length; i++) {
+      roomIds.push(data[i].Id);
+    }
+    this.template
+      .querySelector("c-hotel-three-sixty-reservation-list")
+      .getReservationList(roomIds);
+  }
+
+  connectedCallback() {
+    this.subscribeToMessageChannel();
+  }
+
+  getSelectedName(event) {
+    this.selectedRooms = [];
+    const selectedRows = event.detail.selectedRows;
+    // Display that fieldName of the selected rows
+    for (let i = 0; i < selectedRows.length; i++) {
+      this.selectedRooms.push(selectedRows[i].Id);
     }
 
-    //  Handler for message received by component
-    handleMessage(message) {
-        this.hotelValue = message.hotelId;
-        this.getRoomList();
-    }
+    this.template
+      .querySelector("c-hotel-three-sixty-reservation-list")
+      .getReservationList(this.selectedRooms);
+  }
 
+  reservationList(event) {
+    this.reservationIds = [];
 
-     getRoomList() {
+    console.log("event details recived are :", event.detail);
+    this.reservationIds = event.detail;
 
-        roomList({h: this.hotelValue }).then((result) => {
-            this.roomList = result;
-            this.roomListSize = Object.keys(this.roomList).length;
-            this.roomShow = this.roomListSize > 0 ? true : false;
+    this.template
+      .querySelector("c-hotel-three-sixty-guest-list")
+      .getGuestList(this.reservationIds);
+    console.log("c-hotel-three-sixty-guest-list triggered");
+  }
 
-            this.fetchDefaultReservationsTable(result);
+  reservationListSelected(event) {
+    this.reservationIds = [];
 
-        }).catch((error) => {
-            console.error(error);
-        })
-    }
+    console.log("event details selected are :", event.detail);
+    this.reservationIds = event.detail;
 
-
-    fetchDefaultReservationsTable(data){
-
-        const roomIds= [];
-
-         for (let i = 0; i < data.length; i++) {
-                roomIds.push(data[i].Id);
-            }
-            this.template.querySelector('c-hotel-three-sixty-reservation-list').getReservationList(roomIds);
-
-    }
-
-    connectedCallback(){
-        this.subscribeToMessageChannel();
-
-    }
-
-     getSelectedName(event) {
-        this.selectedRooms = [];
-        const selectedRows = event.detail.selectedRows;
-        // Display that fieldName of the selected rows
-        for (let i = 0; i < selectedRows.length; i++) {
-            this.selectedRooms.push(selectedRows[i].Id);
-        }
-
-        this.template.querySelector('c-hotel-three-sixty-reservation-list').getReservationList(this.selectedRooms);
-
-    }
-
-    reservationList(event){
-
-        this.reservationIds = [];
-
-        console.log('event details recived are :',event.detail);
-        this.reservationIds = event.detail;
-
-        this.template.querySelector('c-hotel-three-sixty-guest-list').getGuestList(this.reservationIds);
-        console.log('c-hotel-three-sixty-guest-list triggered');
-
-    }
-
-    reservationListSelected(event){
-
-        this.reservationIds = [];
-
-        console.log('event details selected are :',event.detail);
-        this.reservationIds = event.detail;
-
-        this.template.querySelector('c-hotel-three-sixty-guest-list').getGuestList(this.reservationIds);
-        console.log('c-hotel-three-sixty-guest-list triggered');
-
-    }
-
-
-
-
+    this.template
+      .querySelector("c-hotel-three-sixty-guest-list")
+      .getGuestList(this.reservationIds);
+    console.log("c-hotel-three-sixty-guest-list triggered");
+  }
 }

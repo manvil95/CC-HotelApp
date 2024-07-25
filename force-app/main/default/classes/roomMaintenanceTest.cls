@@ -10,7 +10,7 @@ public with sharing class roomMaintenanceTest {
         list<MV_Hotel__c> hList = [SELECT Id, Name FROM MV_Hotel__c];
         roomMaintenance.generateRooms(hList);
 
-        list<Room__c> rommList = [SELECT Id, Name, jacuzzi__c, Type__c, Mini_Bar__c, Air_Condition__c, tv__c, Room_Number__c, MV_Hotel__c FROM Room__c];
+        list<MV_Room__c> rommList = [SELECT Id, Name, MV_FLG_Jacuzzi__c, MV_SEL_Type__c, MV_FLG_MiniBar__c, MV_FLG_AirCondition__c, MV_NUM_RoomNumber__c, MV_Hotel__c FROM MV_Room__c];
         system.assertEquals(rommList.size(), 4);
 
         roomMaintenance.updateHotelRoomsCount(hList);
@@ -22,7 +22,7 @@ public with sharing class roomMaintenanceTest {
 
         roomMaintenance.updateRoomNumbers(hList);
 
-        AggregateResult[] ag = [SELECT MAX(Room_Number__c) maxNum, MIN(Room_Number__c) minNum FROM Room__c];
+        AggregateResult[] ag = [SELECT MAX(MV_NUM_RoomNumber__c) maxNum, MIN(MV_NUM_RoomNumber__c) minNum FROM MV_Room__c];
 
         system.assertEquals(ag[0].get('maxNum'), 4);
         system.assertEquals(ag[0].get('minNum'), 1);

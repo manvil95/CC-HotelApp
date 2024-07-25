@@ -6,18 +6,18 @@ public class roomTriggerTest {
         insert h;
 
         // Create 1 room to check against
-        Room__c r1 = new Room__c(Name = 'testRoom', Room_Number__c = 1, MV_Hotel__c = h.Id);
+        MV_Room__c r1 = new MV_Room__c(Name = 'testRoom', MV_NUM_RoomNumber__c = 1, MV_Hotel__c = h.Id);
 
         insert r1;
 
-        list<Room__c> rUpdate = new List<Room__c>();
+        list<MV_Room__c> rUpdate = new List<MV_Room__c>();
 
         // create 160 rooms test
         for (integer i = 0; i < 160; i++) {
-            Room__c r = new Room__c(Name = 'test', Room_Number__c = 1, MV_Hotel__c = h.Id);
+            MV_Room__c r = new MV_Room__c(Name = 'test', MV_NUM_RoomNumber__c = 1, MV_Hotel__c = h.Id);
             rUpdate.add(r);
         }
-        Room__c r2 = new Room__c(Name = 'test', Room_Number__c = 0, MV_Hotel__c = h.Id);
+        MV_Room__c r2 = new MV_Room__c(Name = 'test', MV_NUM_RoomNumber__c = 0, MV_Hotel__c = h.Id);
         rUpdate.add(r2);
 
         // Performe Test
@@ -30,7 +30,7 @@ public class roomTriggerTest {
             system.assertEquals(expectedExceptionThrown, true);
         }
 
-        Room__c rtest = new Room__c(Name = 'test', Room_Number__c = 200, MV_Hotel__c = h.Id, Available__c = true, occupied__c = true);
+        MV_Room__c rtest = new MV_Room__c(Name = 'test', MV_NUM_RoomNumber__c = 200, MV_Hotel__c = h.Id, MV_FLG_Available__c = true, MV_FLG_Occupied__c = true);
 
         try {
             insert rtest;
@@ -41,7 +41,7 @@ public class roomTriggerTest {
 
         Test.stopTest();
 
-        list<Room__c> roomsInserted = [SELECT Id FROM Room__c];
+        list<MV_Room__c> roomsInserted = [SELECT Id FROM MV_Room__c];
         system.assertEquals(1, roomsInserted.size());
     }
 }
